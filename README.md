@@ -18,3 +18,9 @@ Ferramenta `uv`. Para instalar:
 
 ## Exemplos
 
+```bash
+λ uv run anon.py data/example.csv
+λ uv run anon.py data/example.xlsx
+λ uv run anon.py data/example.docx
+```
+
