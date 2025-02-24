@@ -2,228 +2,160 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+import hashlib
 import os
-import subprocess
-import sys
+import re
+import sqlite3
+
+from docx import Document
+from email_validator import EmailNotValidError, validate_email
 
 
 def blue(text):
-    """Formata o texto em azul com ANSI escape sequences."""
+    """Formata o texto em azul com ANSI escape sequences"""
     return f"\033[34m{text}\033[0m"
 
 
+def red(text):
+    """Formata o texto em vermelho com ANSI escape sequences"""
+    return f"\033[31m{text}\033[0m"
+
+
 class FileProcessor:
-    """Classe responsável pelo processamento de diferentes tipos de arquivos."""
+    """Classe para processar arquivos de texto e tabulares, anonimizando dados sensíveis"""
 
     def __init__(self):
-        # Verifica se módulos opcionais estão disponíveis
-        try:
-            import docx
+        self.db_dir = os.path.join(os.getcwd(), "db")
+        self.db_path = os.path.join(self.db_dir, "anon.db")
+        self.setup_database()
 
-            self.docx_available = True
-        except ImportError:
-            self.docx_available = False
-
-        try:
-            import openpyxl
-
-            self.openpyxl_available = True
-        except ImportError:
-            self.openpyxl_available = False
-
-        # Verifica e configura a chave cryptopant
-        self.key_path = os.path.join(os.getcwd(), "key.cryptopant")
-        self.check_cryptopant_key()
-
-        # Cria o diretório de saída se não existir
+        # Criar diretório de saída, se não existir
         self.output_dir = os.path.join(os.getcwd(), "output")
-        if not os.path.exists(self.output_dir):
-            os.makedirs(self.output_dir)
-            print(blue(f"Diretório de saída criado: {self.output_dir}"))
-        else:
-            print(blue(f"Usando diretório de saída existente: {self.output_dir}"))
+        os.makedirs(self.output_dir, exist_ok=True)
 
-    def check_cryptopant_key(self):
-        """Verifica se a chave cryptopant existe e a cria se necessário usando o binário scramble_ips."""
-        if not os.path.exists(self.key_path):
-            print(blue("Chave cryptopant não encontrada. Criando nova chave..."))
+    def setup_database(self):
+        """Configura o banco de dados SQLite, criando a pasta e o arquivo se não existirem"""
+        os.makedirs(self.db_dir, exist_ok=True)
+
+        self.conn = sqlite3.connect(self.db_path)
+        self.conn.execute("PRAGMA journal_mode=WAL;")  # Write-Ahead Logging
+        self.conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS anon_pairs (
+                type TEXT NOT NULL,
+                original TEXT NOT NULL,
+                hash TEXT PRIMARY KEY
+            );
+            """
+        )
+        self.conn.commit()
+
+    def save_to_db(self, data_type, hash_value, original):
+        """Salva (tipo, hash, original) no banco de dados, evitando duplicações"""
+        with self.conn:
+            self.conn.execute(
+                "INSERT OR IGNORE INTO anon_pairs (type, original, hash) VALUES (?, ?, ?);",
+                (data_type, original, hash_value),
+            )
+
+    def close(self):
+        """Fecha a conexão com o banco de dados"""
+        self.conn.close()
+
+    def hash_value(self, value):
+        """Gera um hash SHA-256 a partir do valor original"""
+        hash_object = hashlib.sha256(value.encode("utf-8"))
+        return hash_object.hexdigest()
+
+    def anonymize_text(self, text):
+        """Anonimiza IPs e e-mails em um texto, registrando no banco de dados"""
+        ip_pattern = re.compile(r"\b(?:\d{1,3}\.){3}\d{1,3}\b")
+        email_pattern = re.compile(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")
+
+        def replace_ip(match):
+            original_ip = match.group(0)
+            hash_value = self.hash_value(original_ip)
+            self.save_to_db("ip", hash_value, original_ip)
+            print(red(f"Hit: {original_ip}"))
+            return f"ip-anon-{hash_value[:8]}"
+
+        def replace_email(match):
+            original_email = match.group(0)
             try:
-                # Cria uma chave cryptopant usando o binário scramble_ips
-                cmd = ["scramble_ips", "--newkey", self.key_path]
-                result = subprocess.run(cmd, capture_output=True, text=True)
+                valid = validate_email(original_email, check_deliverability=False)
+                normalized = valid.normalized
+                hash_value = self.hash_value(normalized)
+                self.save_to_db("email", hash_value, normalized)
+                print(red(f"Hit: {original_email}"))
+                return f"email-anon-{hash_value[:8]}"
+            except EmailNotValidError:
+                return original_email  # Mantém e-mails inválidos inalterados
 
-                if result.returncode != 0:
-                    print(blue(f"Erro ao criar chave cryptopant: {result.stderr}"))
-                    sys.exit(1)
+        # Substituir IPs e e-mails no texto
+        text = ip_pattern.sub(replace_ip, text)
+        text = email_pattern.sub(replace_email, text)
 
-                print(blue(f"Chave cryptopant criada em: {self.key_path}"))
-                # Permissões: apenas o usuário atual pode ler a chave
-                os.chmod(self.key_path, 0o600)
-            except Exception as e:
-                print(blue(f"Erro ao criar chave cryptopant: {str(e)}"))
-                sys.exit(1)
-        else:
-            print(blue(f"Usando chave cryptopant existente: {self.key_path}"))
+        return text
 
-    def process_file(self, file_path):
-        """Processa um arquivo baseado em sua extensão."""
-        file_path = os.path.abspath(file_path)
-        if not os.path.isfile(file_path):
-            print(blue(f"Erro: Arquivo '{file_path}' não encontrado."))
-            sys.exit(1)
-
-        ext = os.path.splitext(file_path)[1].lower()
-
-        if ext in [".txt", ".docx"]:
-            self.process_textual(file_path)
-        elif ext in [".csv", ".xlsx"]:
-            self.process_tabular(file_path)
-        else:
-            print(blue(f"Erro: Formato '{ext}' não suportado."))
-            sys.exit(1)
-
-    def process_textual(self, file_path):
-        """Processa arquivos de texto (.txt, .docx) e anonimiza IPs usando cryptopant."""
-        ext = os.path.splitext(file_path)[1].lower()
+    def process_textual(self, file_path, ext):
+        """Processa arquivos textuais (.txt, .docx) e anonimiza seu conteúdo"""
         filename = os.path.basename(file_path)
         filename_no_ext = os.path.splitext(filename)[0]
 
-        # Extrair o conteúdo do arquivo
+        # Extrair o conteúdo do arquivo para `content`
         if ext == ".txt":
             with open(file_path, "r", encoding="utf-8") as file_obj:
                 content = file_obj.read()
         elif ext == ".docx":
-            if not self.docx_available:
-                print(
-                    blue(
-                        "Erro: 'python-docx' não instalado. Execute 'uv pip install python-docx'."
-                    )
-                )
-                return
-            from docx import Document
-
             doc = Document(file_path)
             content = "\n".join([p.text for p in doc.paragraphs])
         else:
-            print(blue(f"Erro: Formato '{ext}' não suportado para arquivos textuais."))
+            print(red(f"Erro: Formato '{ext}' não suportado para arquivos textuais"))
             return
 
-        print(blue(f"\nModo textual: Processando {filename}\n"))
+        print(blue(f"\nProcessando {filename}...\n"))
 
-        # Anonimização dos IPs usando cryptopant
-        anonymized_content = self.anonymize_ips(content)
+        anonymized_content = self.anonymize_text(content)
 
-        # Mostrar o resultado da anonimização
-        print(blue("Conteúdo após anonimização de IPs:"))
-        print(anonymized_content)  # Conteúdo do arquivo não é colorido
-
-        # Salvar o conteúdo anonimizado em txt
+        # Salvar a saída anonimizada em um arquivo .txt
         output_path = os.path.join(self.output_dir, f"{filename_no_ext}-anon.txt")
         with open(output_path, "w", encoding="utf-8") as file_obj:
             file_obj.write(anonymized_content)
 
-        print(blue(f"Arquivo original mantido em: {file_path}"))
-        print(blue(f"Arquivo anonimizado salvo em: {output_path}"))
+        print(blue(f"\nArquivo original mantido em: {file_path}"))
+        print(blue(f"Arquivo anonimizado salvo em: {output_path}\n"))
 
-    def anonymize_ips(self, content):
-        """Anonimiza IPs no conteúdo usando o binário scramble_ips no modo texto via stdin."""
-        try:
-            # Executa o scramble_ips com a chave como argumento posicional e modo texto (-t)
-            cmd = ["scramble_ips", "-t", self.key_path]
-
-            # Usa Popen para ter controle sobre stdin/stdout
-            process = subprocess.Popen(
-                cmd,
-                stdin=subprocess.PIPE,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True,
-            )
-
-            # Envia o conteúdo via stdin e captura stdout/stderr
-            stdout, stderr = process.communicate(input=content)
-
-            if process.returncode != 0:
-                print(blue(f"Erro ao executar scramble_ips: {stderr}"))
-                return content  # Retorna o conteúdo original em caso de erro
-
-            return stdout
-
-        except Exception as e:
-            print(blue(f"Erro durante a anonimização de IPs: {str(e)}"))
-            return content  # Retorna o conteúdo original em caso de erro
-
-    def process_tabular(self, file_path):
-        """Processa arquivos tabulares (.csv, .xlsx)."""
-        ext = os.path.splitext(file_path)[1].lower()
-        filename = os.path.basename(file_path)
-
-        if ext == ".csv":
-            import csv
-
-            with open(file_path, "r", encoding="utf-8") as file_obj:
-                reader = csv.reader(file_obj)
-                header = next(reader, None)
-                first_row = next(reader, None)
-        elif ext == ".xlsx":
-            if not self.openpyxl_available:
-                print(
-                    blue(
-                        "Erro: 'openpyxl' não instalado. Execute 'uv pip install openpyxl'."
-                    )
-                )
-                return
-            from openpyxl import load_workbook
-
-            wb = load_workbook(filename=file_path, read_only=True)
-            sheet = wb.active
-            rows = list(sheet.iter_rows(values_only=True))
-            header = rows[0] if rows else None
-            first_row = rows[1] if len(rows) > 1 else None
-        else:
-            print(blue(f"Erro: Formato '{ext}' não suportado para arquivos tabulares."))
+    def process_file(self, file_path):
+        """Processa um arquivo baseado em sua extensão"""
+        file_path = os.path.abspath(file_path)
+        if not os.path.isfile(file_path):
+            print(red(f"Erro: Arquivo '{file_path}' não encontrado"))
             return
 
-        print(blue(f"\nModo tabular: Processando {filename}\n"))
-        print(blue("Cabeçalho:"), header)  # Header não é colorido
-        print(blue("Primeira linha:"), first_row)  # Primeira linha não é colorida
-        print(blue(f"Arquivo original mantido em: {file_path}"))
+        ext = os.path.splitext(file_path)[1].lower()
+
+        if ext in [".txt", ".docx"]:
+            self.process_textual(file_path, ext)
+        elif ext in [".xlsx", ".csv"]:
+            self.process_tabular(file_path, ext)
+        else:
+            print(red(f"Erro: Formato '{ext}' não suportado"))
 
 
 def main():
-    """Função principal do programa."""
     parser = argparse.ArgumentParser(
-        description="Anon: Ferramenta de anonimização de tickets de segurança."
+        description="Anon: Ferramenta de anonimização de tickets de segurança"
     )
 
-    # Permite usar tanto posicional quanto -i/--input
-    parser.add_argument(
-        "input_file",
-        nargs="?",  # Torna opcional para permitir uso de -i
-        type=str,
-        help="Caminho do arquivo de entrada",
-    )
-
-    parser.add_argument(
-        "-i",
-        "--input",
-        dest="input_arg",
-        type=str,
-        help="Caminho do arquivo de entrada (alternativa)",
-    )
+    parser.add_argument("input_file", type=str, help="caminho do arquivo de entrada")
 
     args = parser.parse_args()
 
-    # Prioriza o argumento posicional, depois o -i/--input
-    file_path = args.input_file if args.input_file else args.input_arg
-
-    if not file_path:
-        parser.error(
-            "É necessário fornecer um arquivo de entrada (posicional ou com -i/--input)"
-        )
-
     processor = FileProcessor()
-    processor.process_file(file_path)
+    try:
+        processor.process_file(args.input_file)
+    finally:
+        processor.close()
 
 
 if __name__ == "__main__":

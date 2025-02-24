@@ -1,8 +1,8 @@
-From: cais@cais.rnp.br
+From: email-anon-b30e8c10
 Subject: [CAIS #5981463] Host com serviço STUN vulnerável que pode ser utilizado em ataques DDoS [aberto]
 Date: 17 August 2024 at 00:46:45 GMT-3
-To: deivison@universidadefranciscana.edu.br
-Cc: diego.torres@pop-rs.rnp.br, gabriel.zenker@pop-rs.rnp.br,  gustavo.dreier@pop-rs.rnp.br, henrison@ufn.edu.br,  berthold@pop-rs.rnp.br, estevan@universidadefranciscana.edu.br
+To: email-anon-f60c02a9
+Cc: email-anon-d512800a, email-anon-c8e69146,  email-anon-4866bf62, email-anon-5bc4b961,  email-anon-5f733e9c, email-anon-416aa3c7
 
 Prezado(a),
 
@@ -65,7 +65,7 @@ CAIS/RNP
 #   CENTRO DE ATENDIMENTO A INCIDENTES DE SEGURANCA (CAIS)     #
 #       Rede Nacional de Ensino e Pesquisa (RNP)               #
 #                                                              #
-# cais@cais.rnp.br       https://www.cais.rnp.br/              #
+# email-anon-b30e8c10       https://www.cais.rnp.br/              #
 # Tel. 019-37873300      Fax. 019-37873301                     #
 # Chave PGP disponivel   https://www.cais.rnp.br/cais-pgp.key  #
 ################################################################
@@ -73,7 +73,7 @@ CAIS/RNP
 
 -----------------------------------------------------------------------------
 Data e hora UTC(+0),IP Vulnerável,Porta Origem, Protocolo, Hostname Origem, ASN, Serviço Vulnerável
-2024-08-16 00:52:04, 206.223.5.223, 3478, udp, -, 2716, stun
+2024-08-16 00:52:04, ip-anon-f5e20ee6, 3478, udp, -, 2716, stun
 
 Mais informações:
 
