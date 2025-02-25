@@ -15,13 +15,18 @@ from email_validator import EmailNotValidError, validate_email
 
 
 def blue(text):
-    """Colore o texto de azul - ajuda na visualização dos logs"""
+    """Colore o texto de azul - pra informações"""
     return f"\033[34m{text}\033[0m"
 
 
 def red(text):
-    """Colore o texto de vermelho - útil pra destacar hits e erros"""
+    """Colore o texto de vermelho - pra hits e erros"""
     return f"\033[31m{text}\033[0m"
+
+
+def orange(text):
+    """Colore o texto de laranja - pro resumo de hits"""
+    return f"\033[33m{text}\033[0m"
 
 
 class DataAnonymizer:
@@ -30,10 +35,12 @@ class DataAnonymizer:
     EMAIL_PATTERN = re.compile(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")
 
     def __init__(self, db_path):
-        """Inicializa o anonimizador com o caminho para o banco de dados"""
+        """Inicializa o anonimizador e os contadores de hits"""
         self.db_path = db_path
-        # Usando um local thread para armazenar conexões específicas de thread
+        # armazenar conexões específicas de thread (sqlite aceita apenas uma por thread)
         self.local = threading.local()
+        # contador para hits de cada tipo de dado anonimizado
+        self.hit_counts = {"ipv4": 0, "ipv6": 0, "email": 0}
 
     def get_connection(self):
         """Retorna uma conexão para a thread atual ou cria uma nova"""
@@ -42,13 +49,22 @@ class DataAnonymizer:
             self.local.conn.execute("PRAGMA journal_mode=WAL;")
         return self.local.conn
 
+    def close(self):
+        """Fecha a conexão com o banco de dados desta thread, se existir"""
+        if hasattr(self.local, "conn"):
+            try:
+                self.local.conn.close()
+                del self.local.conn
+            except Exception as e:
+                print(red(f"Erro ao fechar conexão com o banco: {str(e)}"))
+
     def hash_value(self, value):
         """Cria um hash SHA-256 do valor original"""
         hash_object = hashlib.sha256(value.encode("utf-8"))
         return hash_object.hexdigest()
 
     def save_to_db(self, data_type, original, hash_value):
-        """Salva o par (original, hash) no banco, ignorando duplicatas"""
+        """Salva a tupla (tipo, original, hash) no banco, ignorando duplicatas"""
         conn = self.get_connection()
         with conn:
             conn.execute(
@@ -57,36 +73,38 @@ class DataAnonymizer:
             )
 
     def _anonymize_ip_addresses(self, text, line_info="", column_info=""):
-        """Anonymize IPv4 and IPv6 addresses using the ipaddress module"""
+        """Anonimiza endereços IPv4 e IPv6 usando o módulo ipaddress"""
         import ipaddress
 
         words = text.split()
         anonymized_words = []
 
         for word in words:
-            # Try to clean up the word to handle IPs that might be part of text
-            # Remove common punctuation that might be at the end of an IP
+            # Tenta limpar a palavra para lidar com IPs que podem fazer parte do texto
+            # Remove pontuações comuns que podem estar no final de um IP
             cleaned_word = word.strip('.,;:()[]{}"\'"')
 
             try:
-                # Try to parse as an IP address (works for both IPv4 and IPv6)
+                # Tenta analisar como um endereço IP (funciona para IPv4 e IPv6)
                 ip = ipaddress.ip_address(cleaned_word)
 
-                # If we get here, it's a valid IP address
+                # Se chegarmos aqui, é um endereço IP válido
                 original_ip = cleaned_word
                 ip_type = "ipv4" if ip.version == 4 else "ipv6"
+                # Incrementar o contador de hits
+                self.hit_counts[ip_type] += 1
                 hash_value = self.hash_value(original_ip)
                 self.save_to_db(ip_type, original_ip, hash_value)
 
                 hit_msg = f"Hit ({ip_type}): {original_ip}{line_info}{column_info}"
                 print(red(hit_msg))
 
-                # Replace only the IP part, keeping any punctuation
+                # Construir um slug com os primeiros 8 caracteres do hash
                 replacement = f"{ip_type}-anon-{hash_value[:8]}"
                 anonymized_word = word.replace(cleaned_word, replacement)
                 anonymized_words.append(anonymized_word)
             except ValueError:
-                # Not a valid IP address
+                # Não é um endereço IP válido
                 anonymized_words.append(word)
 
         return " ".join(anonymized_words)
@@ -99,6 +117,8 @@ class DataAnonymizer:
             original_email = match.group(0)
             try:
                 valid = validate_email(original_email, check_deliverability=False)
+                # Se chegarmos aqui, é um e-mail válido, incrementar o contador de hits
+                self.hit_counts["email"] += 1
                 normalized = valid.normalized
                 hash_value = self.hash_value(normalized)
                 self.save_to_db("email", normalized, hash_value)
@@ -117,17 +137,14 @@ class DataAnonymizer:
         return result
 
     def anonymize_text(self, text, line_info="", column_info=""):
-        """Anonimizar texto, substituindo IPs e e-mails por hashes"""
-        # Anonymize IPs using the ipaddress module
+        """Anonimiza uma stream de texto"""
         text = self._anonymize_ip_addresses(text, line_info, column_info)
-
-        # Keep using the regex for emails
         text = self._anonymize_email(text, line_info, column_info)
 
         return text
 
     def anonymize_cell(self, value, row_idx=None, column_name=None):
-        """Anonimiza uma célula de dados tabulares"""
+        """Anonimiza uma célula em dados tabulares"""
         if not isinstance(value, str):
             return value
 
@@ -135,14 +152,21 @@ class DataAnonymizer:
         column_info = f" (coluna '{column_name}')" if column_name is not None else ""
         return self.anonymize_text(value, line_info, column_info)
 
-    def close(self):
-        """Fecha a conexão com o banco de dados desta thread, se existir"""
-        if hasattr(self.local, "conn"):
-            try:
-                self.local.conn.close()
-                del self.local.conn
-            except Exception as e:
-                print(red(f"Erro ao fechar conexão com o banco: {str(e)}"))
+    def print_hit_summary(self):
+        """Resumo final dos hits encontrados"""
+        total = sum(self.hit_counts.values())
+        if total == 0:
+            print(orange("Nenhum hit encontrado"))
+            return
+        else:
+            summary = (
+                "\nResumo da anonimização:\n"
+                f"IPv4 encontrados:   {self.hit_counts['ipv4']:3}\n"
+                f"IPv6 encontrados:   {self.hit_counts['ipv6']:3}\n"
+                f"E-mails encontrados:{self.hit_counts['email']:3}\n"
+                f"Total de hits:      {total:3}\n"
+            )
+            print(orange(summary))
 
 
 class FileProcessor:
@@ -216,7 +240,7 @@ class FileProcessor:
 
             ext = os.path.splitext(file_path)[1].lower()
 
-            # Delegar para o método apropriado com base na extensão
+            # Delegar para o método com base na extensão
             if ext in [".txt", ".docx"]:
                 self._process_textual(file_path, ext)
             elif ext in [".xlsx", ".csv"]:
@@ -247,13 +271,15 @@ class FileProcessor:
         # Anonimizar o conteúdo
         anonymized_content = self.anonymizer.anonymize_text(content)
 
-        # Salvar a saída com o formato correto
+        # Salvar a saída como `.txt`
         output_path = os.path.join(self.output_dir, f"{filename_no_ext}-{ext[1:]}.txt")
         with open(output_path, "w", encoding="utf-8") as file_obj:
             file_obj.write(anonymized_content)
 
+        # Avisar os resultados
         print(blue(f"\nArquivo original: {file_path}"))
         print(blue(f"Arquivo anonimizado: {output_path}\n"))
+        self.anonymizer.print_hit_summary()
 
     def _process_tabular(self, file_path, ext):
         """Processa arquivos tabulares (.xlsx, .csv) com paralelismo"""
@@ -278,8 +304,10 @@ class FileProcessor:
         output_path = os.path.join(self.output_dir, f"{filename_no_ext}-{ext[1:]}.csv")
         df_anon.to_csv(output_path, index=False, encoding="utf-8")
 
+        # Avisar os resultados
         print(blue(f"\nArquivo original: {file_path}"))
         print(blue(f"Arquivo anonimizado: {output_path}\n"))
+        self.anonymizer.print_hit_summary()
 
     def _process_dataframe_parallel(self, df):
         """Processa um DataFrame com paralelismo por linha"""
@@ -288,7 +316,7 @@ class FileProcessor:
         # Função para processar uma linha
         def process_row(row_tuple):
             idx, row = row_tuple
-            processed_row = pd.Series(index=row.index)
+            processed_row = pd.Series(index=row.index, dtype=str)
 
             # Processando cada célula com informação da coluna
             for col_name in column_names:
@@ -298,15 +326,15 @@ class FileProcessor:
 
             return processed_row
 
-        # Processar em paralelo usando ThreadPoolExecutor
+        # "Paralelizar" com threads
         with concurrent.futures.ThreadPoolExecutor() as executor:
-            # Preparar as linhas para processamento
+            # (índice, row_series) tuplas para cada linha
             row_tuples = list(enumerate(df.iterrows()))
             processed_rows = list(
+                # rt[0] é o índice, rt[1][1] é a linha como Series
                 executor.map(lambda rt: process_row((rt[0], rt[1][1])), row_tuples)
             )
 
-        # Construir o DataFrame de resultado
         return pd.DataFrame(processed_rows, columns=df.columns)
 
 
