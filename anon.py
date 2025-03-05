@@ -253,7 +253,6 @@ class FileProcessor:
     def _process_textual(self, file_path, ext):
         """Processa arquivos textuais (.txt, .docx)"""
         filename = os.path.basename(file_path)
-        filename_no_ext = os.path.splitext(filename)[0]
 
         # Extrair o conteúdo do arquivo
         if ext == ".txt":
@@ -271,8 +270,10 @@ class FileProcessor:
         # Anonimizar o conteúdo
         anonymized_content = self.anonymizer.anonymize_text(content)
 
-        # Salvar a saída como `.txt`
-        output_path = os.path.join(self.output_dir, f"{filename_no_ext}-{ext[1:]}.txt")
+        # Salvar a saída contendo o relpath
+        relative_filepath = os.path.relpath(file_path).replace(".", "-")
+        safe_filepath = relative_filepath.replace("/", "-").replace("\\", "-")
+        output_path = os.path.join(self.output_dir, f"{safe_filepath}-anon.txt")
         with open(output_path, "w", encoding="utf-8") as file_obj:
             file_obj.write(anonymized_content)
 
@@ -284,7 +285,6 @@ class FileProcessor:
     def _process_tabular(self, file_path, ext):
         """Processa arquivos tabulares (.xlsx, .csv) com paralelismo"""
         filename = os.path.basename(file_path)
-        filename_no_ext = os.path.splitext(filename)[0]
 
         print(blue(f"\nProcessando {filename}...\n"))
 
@@ -300,8 +300,10 @@ class FileProcessor:
         # Processar cada linha em paralelo
         df_anon = self._process_dataframe_parallel(df)
 
-        # Salvar a saída com o formato correto
-        output_path = os.path.join(self.output_dir, f"{filename_no_ext}-{ext[1:]}.csv")
+        # Salvar a saída contendo o relpath
+        relative_filepath = os.path.relpath(file_path).replace(".", "-")
+        safe_filepath = relative_filepath.replace("/", "-").replace("\\", "-")
+        output_path = os.path.join(self.output_dir, f"{safe_filepath}-anon.csv")
         df_anon.to_csv(output_path, index=False, encoding="utf-8")
 
         # Avisar os resultados
