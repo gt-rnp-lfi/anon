@@ -4,14 +4,85 @@
 import argparse
 import concurrent.futures
 import hashlib
+import ipaddress
 import os
 import re
 import sqlite3
 import threading
 
 import pandas as pd
+import spacy
 from docx import Document
 from email_validator import EmailNotValidError, validate_email
+from spacy.language import Language
+from spacy.tokens import Span
+
+
+@Language.component("relabel_ip_entities")
+def relabel_ip_entities(doc):
+    new_ents = []
+    for ent in doc.ents:
+        label = ent.label_
+        try:
+            if "/" in ent.text:
+                network = ipaddress.ip_network(ent.text, strict=False)
+                label = (
+                    "CIDR_V4"
+                    if isinstance(network, ipaddress.IPv4Network)
+                    else "CIDR_V6"
+                )
+            else:
+                ip = ipaddress.ip_address(ent.text)
+                label = "IPV4" if isinstance(ip, ipaddress.IPv4Address) else "IPV6"
+        except ValueError:
+            pass
+        new_ents.append(Span(doc, ent.start, ent.end, label=label))
+    doc.ents = new_ents
+    return doc
+
+
+@Language.component("merge_entities")
+def merge_entities(doc):
+    merged_ents = []
+    buffer = []
+
+    def flush_buffer():
+        if buffer:
+            start, end = buffer[0][0], buffer[-1][1]
+            merged_ents.append(Span(doc, start, end, label="ENDERECO"))
+            buffer.clear()
+
+    for ent in doc.ents:
+        if ent.label_ in {"LOC", "GPE", "ENDERECO"}:
+            buffer.append((ent.start, ent.end))
+        else:
+            flush_buffer()
+            merged_ents.append(ent)
+    flush_buffer()
+    doc.ents = merged_ents
+    return doc
+
+
+# Configuração do pipeline spaCy para processamento de endereços e demais entidades
+nlp_spacy = spacy.load("pt_core_news_lg")
+ruler = nlp_spacy.add_pipe("entity_ruler", before="ner")
+ruler.add_patterns(
+    [
+        {
+            "label": "EMAIL",
+            "pattern": [{"TEXT": {"REGEX": r"^[\w\.-]+@[\w\.-]+\.\w+$"}}],
+        },
+        {"label": "IP", "pattern": [{"TEXT": {"REGEX": r"^\d{1,3}(\.\d{1,3}){3}$"}}]},
+        {
+            "label": "IP",
+            "pattern": [
+                {"TEXT": {"REGEX": r"^([0-9a-fA-F]{1,4}:){2,7}[0-9a-fA-F]{1,4}$"}}
+            ],
+        },
+    ]
+)
+nlp_spacy.add_pipe("relabel_ip_entities", after="ner")
+nlp_spacy.add_pipe("merge_entities", last=True)
 
 
 def blue(text):
@@ -41,6 +112,8 @@ class DataAnonymizer:
         self.local = threading.local()
         # contador para hits de cada tipo de dado anonimizado
         self.hit_counts = {"ipv4": 0, "ipv6": 0, "email": 0}
+        # modelo de linguagem para processamento de linguagem natural (PLN)
+        nlp_spacy = spacy.load("pt_core_news_lg")
 
     def get_connection(self):
         """Retorna uma conexão para a thread atual ou cria uma nova"""
@@ -74,7 +147,6 @@ class DataAnonymizer:
 
     def _anonymize_ip_addresses(self, text, line_info="", column_info=""):
         """Anonimiza endereços IPv4 e IPv6 usando o módulo ipaddress"""
-        import ipaddress
 
         words = text.split()
         anonymized_words = []
@@ -136,10 +208,18 @@ class DataAnonymizer:
 
         return result
 
+    def _anonymize_with_spacy(self, text):
+        doc = nlp_spacy(text)
+        for ent in doc.ents:
+            print(red(f"Hit ({ent.label_}): {ent.text}"))
+            text = text.replace(ent.text, f"{ent.label_}-anon")
+        return text
+
     def anonymize_text(self, text, line_info="", column_info=""):
         """Anonimiza uma stream de texto"""
         text = self._anonymize_ip_addresses(text, line_info, column_info)
         text = self._anonymize_email(text, line_info, column_info)
+        text = self._anonymize_with_spacy(text)
 
         return text
 
@@ -272,7 +352,13 @@ class FileProcessor:
 
         # Salvar a saída contendo o relpath
         relative_filepath = os.path.relpath(file_path).replace(".", "-")
-        safe_filepath = relative_filepath.replace("/", "-").replace("\\", "-")
+        safe_filepath = (
+            relative_filepath.replace(" ", "-")  # Espaços
+            .replace("/", "-")  # Barras normais (Linux)
+            .replace("\\", "-")  # Barras invertidas (Windows)
+            .replace(".", "-")  # Pontos no geral
+            .strip()  # Espaços no início/fim
+        )
         output_path = os.path.join(self.output_dir, f"{safe_filepath}-anon.txt")
         with open(output_path, "w", encoding="utf-8") as file_obj:
             file_obj.write(anonymized_content)
@@ -302,7 +388,13 @@ class FileProcessor:
 
         # Salvar a saída contendo o relpath
         relative_filepath = os.path.relpath(file_path).replace(".", "-")
-        safe_filepath = relative_filepath.replace("/", "-").replace("\\", "-")
+        safe_filepath = (
+            relative_filepath.replace(" ", "-")  # Espaços
+            .replace("/", "-")  # Barras normais (Linux)
+            .replace("\\", "-")  # Barras invertidas (Windows)
+            .replace(".", "-")  # Pontos no geral
+            .strip()  # Espaços no início/fim
+        )
         output_path = os.path.join(self.output_dir, f"{safe_filepath}-anon.csv")
         df_anon.to_csv(output_path, index=False, encoding="utf-8")
 
@@ -315,7 +407,7 @@ class FileProcessor:
         """Processa um DataFrame com paralelismo por linha"""
         column_names = df.columns.tolist()
 
-        # Função para processar uma linha
+        # Processar cada linha
         def process_row(row_tuple):
             idx, row = row_tuple
             processed_row = pd.Series(index=row.index, dtype=str)
