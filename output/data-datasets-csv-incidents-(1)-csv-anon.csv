@@ -1,101 +1,101 @@
 ID,Assunto,IP Origem,Notificado em,Status,Tipo
-5962027,Host com o serviço SMB vulnerável,ipv4-anon-da7304f5,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962028,Host com o serviço SMB vulnerável,ipv4-anon-5ebda632,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962029,Host com o serviço SMB vulnerável,ipv4-anon-831fa1ef,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962030,Host com o serviço SMB vulnerável,ipv4-anon-c79c0aa8,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962031,Host com o serviço SMB vulnerável,ipv4-anon-5f881836,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962032,Host com o serviço SMB vulnerável,ipv4-anon-bc675614,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962033,Host com o serviço SMB vulnerável,ipv4-anon-19cb0459,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962034,Host com o serviço SMB vulnerável,ipv4-anon-15a912c2,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962035,Host com o serviço SMB vulnerável,ipv4-anon-e1ff1d71,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962036,Host com o serviço SMB vulnerável,ipv4-anon-299ab12b,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962037,Host com o serviço SMB vulnerável,ipv4-anon-aa4c6749,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962038,Host com o serviço SMB vulnerável,ipv4-anon-45c65401,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962039,Host com o serviço SMB vulnerável,ipv4-anon-af3288e3,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962040,Host com o serviço SMB vulnerável,ipv4-anon-0958f610,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962041,Host com o serviço SMB vulnerável,ipv4-anon-7fdbeb6a,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962042,Host com o serviço SMB vulnerável,ipv4-anon-914ee549,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962043,Host com o serviço SMB vulnerável,ipv4-anon-7a7c918b,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962045,Host com o serviço SMB vulnerável,ipv4-anon-c0adba8a,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962048,Host com o serviço SMB vulnerável,ipv4-anon-818ac532,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962049,Host com o serviço SMB vulnerável,ipv4-anon-28c6f9a6,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962062,Host com o serviço SMB vulnerável,ipv4-anon-527b22d9,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962063,Host com o serviço SMB vulnerável,ipv4-anon-1a838afa,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962064,Host com o serviço SMB vulnerável,ipv4-anon-bfbec830,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962065,Host com o serviço SMB vulnerável,ipv4-anon-4229966b,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962069,Host com o serviço SMB vulnerável,ipv4-anon-6a821144,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962071,Host com o serviço SMB vulnerável,ipv4-anon-60ecd1ae,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962072,Host com o serviço SMB vulnerável,ipv4-anon-57a4a41e,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962073,Host com o serviço SMB vulnerável,ipv4-anon-8c6d4b83,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962075,Host com o serviço SMB vulnerável,ipv4-anon-e2e9a719,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962076,Host com o serviço SMB vulnerável,ipv4-anon-8a7ca901,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962077,Host com o serviço SMB vulnerável,ipv4-anon-295b7394,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962078,Host com o serviço SMB vulnerável,ipv4-anon-b58d1478,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962079,Host com o serviço SMB vulnerável,ipv4-anon-143c5ac1,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962080,Host com o serviço SMB vulnerável,ipv4-anon-016c24ee,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962081,Host com o serviço SMB vulnerável,ipv4-anon-ee2c21b0,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962082,Host com o serviço SMB vulnerável,ipv4-anon-792995cb,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962083,Host com o serviço SMB vulnerável,ipv4-anon-3802e9c2,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962084,Host com o serviço SMB vulnerável,ipv4-anon-8a247bee,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962085,Host com o serviço SMB vulnerável,ipv4-anon-9d41366e,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962086,Host com o serviço SMB vulnerável,ipv4-anon-619d04cf,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962087,Host com o serviço SMB vulnerável,ipv4-anon-c7a9b50e,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962088,Host com o serviço SMB vulnerável,ipv4-anon-db61f46e,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962089,Host com o serviço SMB vulnerável,ipv4-anon-45e411bc,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962090,Host com o serviço SMB vulnerável,ipv4-anon-b352cc67,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962091,Host com o serviço SMB vulnerável,ipv4-anon-2f0e258a,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962092,Host com o serviço SMB vulnerável,ipv4-anon-8a3ed91b,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962093,Host com o serviço SMB vulnerável,ipv4-anon-25f656e5,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962094,Host com o serviço SMB vulnerável,ipv4-anon-5fe42629,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962095,Host com o serviço SMB vulnerável,ipv4-anon-c49ca1bd,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962096,Host com o serviço SMB vulnerável,ipv4-anon-0e2366fc,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962097,Host com o serviço SMB vulnerável,ipv4-anon-25e174cb,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962098,Host com o serviço SMB vulnerável,ipv4-anon-78ae826f,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962099,Host com o serviço SMB vulnerável,ipv4-anon-eb5ad669,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962100,Host com o serviço SMB vulnerável,ipv4-anon-fe8d7332,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962101,Host com o serviço SMB vulnerável,ipv4-anon-dc1c8fed,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962113,Host com o serviço SMB vulnerável,ipv4-anon-9df7a317,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962114,Host com o serviço SMB vulnerável,ipv4-anon-9fbb2721,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962115,Host com o serviço SMB vulnerável,ipv4-anon-2c3b674a,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962116,Host com o serviço SMB vulnerável,ipv4-anon-22adc373,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962117,Host com o serviço SMB vulnerável,ipv4-anon-bb42df45,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962118,Host com o serviço SMB vulnerável,ipv4-anon-c4b91b10,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962119,Host com o serviço SMB vulnerável,ipv4-anon-5ef854a9,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962120,Host com o serviço SMB vulnerável,ipv4-anon-803caa0f,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962121,Host com o serviço SMB vulnerável,ipv4-anon-f7e82016,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962122,Host com o serviço SMB vulnerável,ipv4-anon-31c7221c,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962123,Host com o serviço SMB vulnerável,ipv4-anon-0e27a503,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962124,Host com o serviço SMB vulnerável,ipv4-anon-efc7e3df,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962125,Host com o serviço SMB vulnerável,ipv4-anon-ffdd5f86,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962126,Host com o serviço SMB vulnerável,ipv4-anon-35b5e621,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962127,Host com o serviço SMB vulnerável,ipv4-anon-28a7a9f3,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962128,Host com o serviço SMB vulnerável,ipv4-anon-cc42fbcb,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962129,Host com o serviço SMB vulnerável,ipv4-anon-79384829,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962130,Host com o serviço SMB vulnerável,ipv4-anon-7e9643a6,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962131,Host com o serviço SMB vulnerável,ipv4-anon-fff12d35,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962132,Host com o serviço SMB vulnerável,ipv4-anon-670ad0aa,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962133,Host com o serviço SMB vulnerável,ipv4-anon-dac02bdf,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962134,Host com o serviço SMB vulnerável,ipv4-anon-71661b10,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962135,Host com o serviço SMB vulnerável,ipv4-anon-8bfd15c6,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962136,Host com o serviço SMB vulnerável,ipv4-anon-5b843c1a,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962137,Host com o serviço SMB vulnerável,ipv4-anon-45ee2c75,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962138,Host com o serviço SMB vulnerável,ipv4-anon-e1f165bf,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962139,Host com o serviço SMB vulnerável,ipv4-anon-317b0ddf,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962140,Host com o serviço SMB vulnerável,ipv4-anon-f7d32f2c,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962141,Host com o serviço SMB vulnerável,ipv4-anon-2671f8fe,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962142,Host com o serviço SMB vulnerável,ipv4-anon-b6236ac1,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962143,Host com o serviço SMB vulnerável,ipv4-anon-a6232fd0,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962144,Host com o serviço SMB vulnerável,ipv4-anon-e3838260,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962145,Host com o serviço SMB vulnerável,ipv4-anon-556d6bef,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962146,Host com o serviço SMB vulnerável,ipv4-anon-4131d4d3,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962147,Host com o serviço SMB vulnerável,ipv4-anon-36d8800a,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962148,Host com o serviço SMB vulnerável,ipv4-anon-22f7494d,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962149,Host com o serviço SMB vulnerável,ipv4-anon-525f9275,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962150,Host com o serviço SMB vulnerável,ipv4-anon-618050f3,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962151,Host com o serviço SMB vulnerável,ipv4-anon-bc1f1ac4,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962152,Host com o serviço SMB vulnerável,ipv4-anon-63f2ec5b,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962153,Host com o serviço SMB vulnerável,ipv4-anon-732099a0,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962154,Host com o serviço SMB vulnerável,ipv4-anon-a2dcc644,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962155,Host com o serviço SMB vulnerável,ipv4-anon-71029a6d,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962156,Host com o serviço SMB vulnerável,ipv4-anon-c63c3232,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
-5962171,Host com o serviço SMB vulnerável,ipv4-anon-82346320,2024-05-16 03:25:27+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
+5962027,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-da7304f5,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962028,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-5ebda632,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962029,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-831fa1ef,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962030,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-c79c0aa8,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962031,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-5f881836,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962032,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-bc675614,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962033,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-19cb0459,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962034,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-15a912c2,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962035,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-e1ff1d71,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962036,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-299ab12b,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962037,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-aa4c6749,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962038,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-45c65401,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962039,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-af3288e3,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962040,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-0958f610,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962041,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-7fdbeb6a,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962042,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-914ee549,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962043,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-7a7c918b,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962045,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-c0adba8a,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962048,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-818ac532,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962049,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-28c6f9a6,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962062,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-527b22d9,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962063,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-1a838afa,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962064,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-bfbec830,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962065,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-4229966b,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962069,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-6a821144,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962071,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-60ecd1ae,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962072,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-57a4a41e,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962073,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-8c6d4b83,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962075,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-e2e9a719,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962076,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-8a7ca901,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962077,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-295b7394,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962078,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-b58d1478,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962079,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-143c5ac1,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962080,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-016c24ee,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962081,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-ee2c21b0,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962082,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-792995cb,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962083,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-3802e9c2,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962084,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-8a247bee,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962085,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-9d41366e,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962086,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-619d04cf,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962087,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-c7a9b50e,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962088,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-db61f46e,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962089,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-45e411bc,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962090,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-b352cc67,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962091,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-2f0e258a,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962092,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-8a3ed91b,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962093,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-25f656e5,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962094,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-5fe42629,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962095,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-c49ca1bd,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962096,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-0e2366fc,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962097,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-25e174cb,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962098,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-78ae826f,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962099,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-eb5ad669,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962100,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-fe8d7332,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962101,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-dc1c8fed,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962113,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-9df7a317,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962114,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-9fbb2721,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962115,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-2c3b674a,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962116,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-22adc373,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962117,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-bb42df45,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962118,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-c4b91b10,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962119,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-5ef854a9,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962120,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-803caa0f,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962121,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-f7e82016,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962122,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-31c7221c,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962123,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-0e27a503,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962124,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-efc7e3df,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962125,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-ffdd5f86,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962126,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-35b5e621,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962127,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-28a7a9f3,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962128,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-cc42fbcb,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962129,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-79384829,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962130,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-7e9643a6,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962131,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-fff12d35,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962132,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-670ad0aa,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962133,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-dac02bdf,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962134,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-71661b10,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962135,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-8bfd15c6,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962136,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-5b843c1a,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962137,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-45ee2c75,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962138,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-e1f165bf,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962139,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-317b0ddf,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962140,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-f7d32f2c,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962141,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-2671f8fe,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962142,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-b6236ac1,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962143,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-a6232fd0,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962144,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-e3838260,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962145,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-556d6bef,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962146,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-4131d4d3,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962147,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-36d8800a,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962148,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-22f7494d,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962149,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-525f9275,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962150,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-618050f3,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962151,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-bc1f1ac4,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962152,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-63f2ec5b,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962153,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-732099a0,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962154,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-a2dcc644,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962155,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-71029a6d,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962156,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-c63c3232,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de
+5962171,ORG-anon-4a823118 com o serviço MISC-anon-f54ab2de vulnerável,IPV4-anon-82346320,2024-05-16 IPV6-anon-2458986f+00:00,Resolvido,MISC-anon-5774f844/MISC-anon-f54ab2de

@@ -1,1 +1,80 @@
-MISC-anon5981463] MISC-anon com serviço ORG-anon vulnerável que pode ser utilizado em ataques MISC-anon [aberto] MISC-anon: 17 August 2024 at IP-anon GMT-3 To: email-anon-f60c02a9 MISC-anon: email-anon-d512800a, email-anon-c8e69146, email-anon-4866bf62, email-anon-5bc4b961, PER-anon, email-anon-416aa3c7 ENDERECO-anon), Segue mensagem que identifica dispositivos com o serviço ORG-anon exposto para internet, que podem ser abusados em ataques MISC-anon de reflexão MISC-anon e fornecer dados particulares do serviço. O que é um serviço ORG-anon (ORG-anon)? ORG-anon é uma ferramenta usada por outros protocolos, como o ORG-anon (ORG-anon), o MISC-anon (MISC-anon) e o MISC-anon. Ele fornece uma ferramenta para os hosts descobrirem a presença de um conversor de endereços de rede e descobrirem o endereço IP mapeado, geralmente público, e o número da porta que o NAT alocou para os fluxos MISC-anon ( MISC-anon ) do aplicativo para hospedeiros remotos. Solicitamos que as configurações do servidor sejam revistas. O ORG-anon recomenda que ao menos uma das soluções abaixo sejam executadas para proteger seus hosts contra ataques desse tipo. ° Caso este dispositivo/serviço não seja utilizado, recomendamos a desativação do mesmo. ° Considere usar ORG-anon sobre MISC-anon por padrão ° ENDERECO-anon - se restringir o acesso a este serviço para redes conhecidas. Para verificar se o seu host está vulnerável, execute as rotinas abaixo: 1 - MISC-anon a ferramenta nmap em uma máquina fora da sua rede 2 - Executar os comandos abaixo (fora da sua rede) # nmap -sV -PN -sU -p 3478 --script stun-info <ip_vulnerável> Caso o resultado da consulta seja diferente de "MISC-anon", o seu host não está vulnerável. Mais informações sobre ORG-anon podem ser encontrados no link: https://en.wikipedia.org/wiki/ORG-anon https://www.rfc-editor.org/rfc/rfc5389 https://datatracker.ietf.org/doc/html/rfc8445#section-19.5.1 https://github.com/Phenomite/AMP-Research/tree/master/Port%203478%20(+%20more%20ports)%20-%20ORG-anon Antes de encerar este incidente junto ao ORG-anon, certifique-se que: 1. O incidente foi investigado e identificado: 2. O incidente foi corrigido, garantindo que ele não voltará a acontecer. Para encerar o incidente, acesse o sistema ENDERECO-anon (link abaixo) e atualize o status do incidente: "https://sgis.rnp.br/incidents/5981463" O incidente pode também ser encerrado mediante resposta dessa mensagem, conforme segue: Para incidentes tratados e corrigidos, substitua o campo "MISC-anon" por: [ORG-anon #IDRT] - [MISC-anon] Para incidentes com informações insuficientes ou cujo host denunciado não pertença a ORG-anon, substitua o campo "MISC-anon" por: [ORG-anon #IDRT] - [ORG-anon-AJUDA] ENDERECO-anon seu retorno, certos de sua colaboração, e nos colocamos a disposição para quaisquer esclarecimentos. Caso você não seja a pessoa apropriada para receber este tipo de mensagem, por favor nos informe a quem devemos contactar para resolver este incidente. Atenciosamente, ORG-anon/ORG-anon ################################################################ # CENTRO DE ATENDIMENTO A INCIDENTES DE SEGURANCA (ORG-anon) # # ORG-anon (ORG-anon) # # # # email-anon-b30e8c10 ENDERECO-anon. 019-37873301 # # Chave MISC-anon disponivel https://www.cais.rnp.br/cais-pgp.key # ################################################################ ----------------------------------------------------------------------------- Data e hora MISC-anon,MISC-anon, MISC-anon, MISC-anonname Origem, ORG-anon, MISC-anon 2024-08-16 IP-anon, ipv4-anon-f5e20ee6, 3478, MISC-anon, -, 2716, stun Mais informações: software: MISC-anon' valor da amplificação: 4.40
+MISC-anon-dc45d36f EMAIL-anon-b30e8c10
+MISC-anon-68971283: [CAIS #5981463] MISC-anon-4a823118 com serviço ORG-anon-a437c0c9 vulnerável que pode ser utilizado em ataques MISC-anon-2e26a8a6 [aberto]
+ENDERECO-anon-99c40ab4: 17 August 2024 at IPV6-anon-f16cbcc3 MISC-anon-568157a8To: EMAIL-anon-f60c02a9
+Cc: EMAIL-anon-d512800a, EMAIL-anon-c8e69146,  EMAIL-anon-4866bf62, EMAIL-anon-5bc4b961,  EMAIL-anon-5f733e9c, EMAIL-anon-416aa3c7
+
+ENDERECO-anon-d718d0ab),
+
+Segue mensagem que identifica dispositivos com o serviço ORG-anon-a437c0c9 exposto para internet, que podem ser abusados em ataques MISC-anon-2e26a8a6 de reflexão MISC-anon-dc4030f9 e fornecer dados particulares do serviço.
+
+O que é um serviço ORG-anon-a437c0c9 (ORG-anon-d6bea511)?
+
+ORG-anon-a437c0c9 é uma ferramenta usada por outros protocolos, como o ORG-anon-8f492bdd (ORG-anon-da6ac2e6), o MISC-anon-7977ef97 (MISC-anon-5feaa383) e o MISC-anon-cffd0628. Ele fornece uma ferramenta para os hosts descobrirem a presença de um conversor de endereços de rede e descobrirem o endereço IP mapeado, geralmente público, e o número da porta que o NAT alocou para os fluxos MISC-anon-dc4030f9 ( MISC-anon-0fa03747 ) do aplicativo para hospedeiros remotos. 
+
+Solicitamos que as configurações do servidor sejam revistas.
+
+O ORG-anon-94d06fe0 recomenda que ao menos uma das soluções abaixo sejam executadas para proteger seus hosts contra ataques desse tipo.
+
+° Caso este dispositivo/serviço não seja utilizado, recomendamos a desativação do mesmo.
+° Considere usar ORG-anon-a437c0c9 sobre MISC-anon-2e943050 por padrão
+° ENDERECO-anon-fa6c4062 - se restringir o acesso a este serviço para redes conhecidas.
+
+Para verificar se o seu host está vulnerável, execute as rotinas abaixo:
+
+1 - MISC-anon-8e8a1dd4 a ferramenta nmap em uma máquina fora da sua rede
+2 - Executar os comandos abaixo (fora da sua rede)
+   # nmap -sV -PN -sU -p 3478 --script stun-info <ip_vulnerável>
+
+Caso o resultado da consulta seja diferente de "MISC-anon-6e10953f", o seu host não está vulnerável.
+
+
+Mais informações sobre ORG-anon-a437c0c9 podem ser encontrados no link:
+ENDERECO-anon-dc131b34
+https://www.rfc-editor.org/rfc/rfc5389
+https://datatracker.ietf.org/doc/html/rfc8445#section-19.5.1
+https://github.com/Phenomite/AMP-Research/tree/master/Port%203478%20(+%20more%20ports)%20-%20STUN
+
+
+Antes de encerar este incidente junto ao ORG-anon-94d06fe0, certifique-se que:
+1.  O incidente foi investigado e identificado:
+2.  O incidente foi corrigido, garantindo que ele não voltará a acontecer.
+
+Para encerar o incidente, acesse o sistema ENDERECO-anon-7829f126 (link abaixo) e atualize o status do incidente:
+"https://sgis.rnp.br/incidents/5981463"
+
+O incidente pode também ser encerrado mediante resposta dessa mensagem, conforme segue: 
+
+Para incidentes tratados e corrigidos, substitua o campo "MISC-anon-b532bf2e" por:
+[MISC-anon-6a912383] - [MISC-anon-822a9798]
+
+Para incidentes com informações insuficientes ou cujo host denunciado não pertença a ORG-anon-46fef0b9, substitua o campo "MISC-anon-b532bf2e" por:
+[MISC-anon-6a912383] - [CAIS-AJUDA]
+
+
+ENDERECO-anon-7ab3eb37 seu retorno, certos de sua colaboração, e nos colocamos a disposição para quaisquer esclarecimentos. 
+
+Caso você não seja a pessoa apropriada para receber este tipo de mensagem, por favor nos informe a quem devemos contactar para resolver este incidente.
+
+
+Atenciosamente,
+
+ORG-anon-94d06fe0/ORG-anon-c5d6812c
+
+################################################################
+#   ENDERECO-anon-eead0856 DE ATENDIMENTO A INCIDENTES DE SEGURANCA (ORG-anon-94d06fe0)     #
+#       ORG-anon-a5ae2a13 (ORG-anon-c5d6812c)               #
+#                                                              #
+# EMAIL-anon-b30e8c10       https://www.cais.rnp.br/              #
+# ENDERECO-anon-932408c8. 019-37873301                     #
+# Chave MISC-anon-6cc6036c disponivel   https://www.cais.rnp.br/cais-pgp.key  #
+################################################################
+
+
+-----------------------------------------------------------------------------
+Data e hora MISC-anon-8af4d288,MISC-anon-07c160c5, MISC-anon-fd399bf6, MISC-anon-6b97d2e1, ORG-anon-23b08ce6, MISC-anon-342cb7b9
+2024-08-16 IPV6-anon-6418c2c8, IPV4-anon-f5e20ee6, 3478, MISC-anon-571e4375, -, 2716, stun
+
+Mais informações:
+
+software: MISC-anon-e4e02312'
+valor da amplificação: 4.40
