@@ -1,80 +1,81 @@
-MISC-anon-dc45d36f EMAIL-anon-b30e8c10
-MISC-anon-68971283: [CAIS #5981463] MISC-anon-4a823118 com serviço ORG-anon-a437c0c9 vulnerável que pode ser utilizado em ataques MISC-anon-2e26a8a6 [aberto]
-ENDERECO-anon-99c40ab4: 17 August 2024 at IPV6-anon-f16cbcc3 MISC-anon-568157a8To: EMAIL-anon-f60c02a9
-Cc: EMAIL-anon-d512800a, EMAIL-anon-c8e69146,  EMAIL-anon-4866bf62, EMAIL-anon-5bc4b961,  EMAIL-anon-5f733e9c, EMAIL-anon-416aa3c7
+From: [EMAIL-b30e8]
+Subject: [CAIS #5981463] Host com serviço [ORG-a437c] vulnerável que pode ser utilizado em ataques DDoS [aberto]
+Date: 17 August 2024 at [IPV6-f16cb] GMT-3
+To: [EMAIL-f60c0]
+Cc: [EMAIL-d5128], [EMAIL-c8e69],  [EMAIL-4866b],[PER-d44a0][EMAIL-5bc4b],  [EMAIL-5f733], [EMAIL-416aa]
 
-ENDERECO-anon-d718d0ab),
+Prezado(a),
 
-Segue mensagem que identifica dispositivos com o serviço ORG-anon-a437c0c9 exposto para internet, que podem ser abusados em ataques MISC-anon-2e26a8a6 de reflexão MISC-anon-dc4030f9 e fornecer dados particulares do serviço.
+Segue mensagem que identifica dispositivos com o serviço [ORG-a437c] exposto para internet, que podem ser abusados em ataques DDoS de reflexão UDP e fornecer dados particulares do serviço.
 
-O que é um serviço ORG-anon-a437c0c9 (ORG-anon-d6bea511)?
+O que é um serviço [ORG-a437c] ([ORG-d6bea])?
 
-ORG-anon-a437c0c9 é uma ferramenta usada por outros protocolos, como o ORG-anon-8f492bdd (ORG-anon-da6ac2e6), o MISC-anon-7977ef97 (MISC-anon-5feaa383) e o MISC-anon-cffd0628. Ele fornece uma ferramenta para os hosts descobrirem a presença de um conversor de endereços de rede e descobrirem o endereço IP mapeado, geralmente público, e o número da porta que o NAT alocou para os fluxos MISC-anon-dc4030f9 ( MISC-anon-0fa03747 ) do aplicativo para hospedeiros remotos. 
+[ORG-a437c] é uma ferramenta usada por outros protocolos, como o [ORG-8f492] ([ORG-da6ac]), o Session Initiation Protocol (SIP) e o WebRTC. Ele fornece uma ferramenta para os hosts descobrirem a presença de um conversor de endereços de rede e descobrirem o endereço IP mapeado, geralmente público, e o número da porta que o NAT alocou para os fluxos UDP ( User Datagram Protocol ) do aplicativo para hospedeiros remotos. 
 
 Solicitamos que as configurações do servidor sejam revistas.
 
-O ORG-anon-94d06fe0 recomenda que ao menos uma das soluções abaixo sejam executadas para proteger seus hosts contra ataques desse tipo.
+O[ORG-94d06][ORG-94d06] recomenda que ao menos uma das soluções abaixo sejam executadas para proteger seus hosts contra ataques desse tipo.
 
 ° Caso este dispositivo/serviço não seja utilizado, recomendamos a desativação do mesmo.
-° Considere usar ORG-anon-a437c0c9 sobre MISC-anon-2e943050 por padrão
-° ENDERECO-anon-fa6c4062 - se restringir o acesso a este serviço para redes conhecidas.
+° Considere usar [ORG-a437c] sobre TCP por padrão
+° Certifique - se restringir o acesso a este serviço para redes conhecidas.
 
 Para verificar se o seu host está vulnerável, execute as rotinas abaixo:
 
-1 - MISC-anon-8e8a1dd4 a ferramenta nmap em uma máquina fora da sua rede
+1 - Instalar a ferramenta nmap em uma máquina fora da sua rede
 2 - Executar os comandos abaixo (fora da sua rede)
    # nmap -sV -PN -sU -p 3478 --script stun-info <ip_vulnerável>
 
-Caso o resultado da consulta seja diferente de "MISC-anon-6e10953f", o seu host não está vulnerável.
+Caso o resultado da consulta seja diferente de "OPEN", o seu host não está vulnerável.
 
 
-Mais informações sobre ORG-anon-a437c0c9 podem ser encontrados no link:
-ENDERECO-anon-dc131b34
+Mais informações sobre [ORG-a437c] podem ser encontrados no link:
+https://en.wikipedia.org/wiki/STUN
 https://www.rfc-editor.org/rfc/rfc5389
 https://datatracker.ietf.org/doc/html/rfc8445#section-19.5.1
 https://github.com/Phenomite/AMP-Research/tree/master/Port%203478%20(+%20more%20ports)%20-%20STUN
 
 
-Antes de encerar este incidente junto ao ORG-anon-94d06fe0, certifique-se que:
+Antes de encerar este incidente junto ao [ORG-94d06], certifique-se que:
 1.  O incidente foi investigado e identificado:
 2.  O incidente foi corrigido, garantindo que ele não voltará a acontecer.
 
-Para encerar o incidente, acesse o sistema ENDERECO-anon-7829f126 (link abaixo) e atualize o status do incidente:
+Para encerar o incidente, acesse o sistema SGIS (link abaixo) e atualize o status do incidente:
 "https://sgis.rnp.br/incidents/5981463"
 
 O incidente pode também ser encerrado mediante resposta dessa mensagem, conforme segue: 
 
-Para incidentes tratados e corrigidos, substitua o campo "MISC-anon-b532bf2e" por:
-[MISC-anon-6a912383] - [MISC-anon-822a9798]
+Para incidentes tratados e corrigidos, substitua o campo "Assunto"/"Subject" por:
+[CAIS #IDRT] - [RESOLVIDO]
 
-Para incidentes com informações insuficientes ou cujo host denunciado não pertença a ORG-anon-46fef0b9, substitua o campo "MISC-anon-b532bf2e" por:
-[MISC-anon-6a912383] - [CAIS-AJUDA]
+Para incidentes com informações insuficientes ou cujo host denunciado não pertença a [ORG-46fef], substitua o campo "Assunto"/"Subject" por:
+[CAIS #IDRT] - [CAIS-AJUDA]
 
 
-ENDERECO-anon-7ab3eb37 seu retorno, certos de sua colaboração, e nos colocamos a disposição para quaisquer esclarecimentos. 
+Aguardamos seu retorno, certos de sua colaboração, e nos colocamos a disposição para quaisquer esclarecimentos. 
 
 Caso você não seja a pessoa apropriada para receber este tipo de mensagem, por favor nos informe a quem devemos contactar para resolver este incidente.
 
 
 Atenciosamente,
 
-ORG-anon-94d06fe0/ORG-anon-c5d6812c
+[ORG-94d06]/[ORG-c5d68]
 
 ################################################################
-#   ENDERECO-anon-eead0856 DE ATENDIMENTO A INCIDENTES DE SEGURANCA (ORG-anon-94d06fe0)     #
-#       ORG-anon-a5ae2a13 (ORG-anon-c5d6812c)               #
+#   CENTRO DE ATENDIMENTO A INCIDENTES DE SEGURANCA ([ORG-94d06])     #
+#       [ORG-a5ae2] ([ORG-c5d68])               #
 #                                                              #
-# EMAIL-anon-b30e8c10       https://www.cais.rnp.br/              #
-# ENDERECO-anon-932408c8. 019-37873301                     #
-# Chave MISC-anon-6cc6036c disponivel   https://www.cais.rnp.br/cais-pgp.key  #
+# [EMAIL-b30e8]       https://www.cais.rnp.br/              #
+# Tel. 019-37873300      Fax. 019-37873301                     #
+# Chave PGP disponivel   https://www.cais.rnp.br/cais-pgp.key  #
 ################################################################
 
 
 -----------------------------------------------------------------------------
-Data e hora MISC-anon-8af4d288,MISC-anon-07c160c5, MISC-anon-fd399bf6, MISC-anon-6b97d2e1, ORG-anon-23b08ce6, MISC-anon-342cb7b9
-2024-08-16 IPV6-anon-6418c2c8, IPV4-anon-f5e20ee6, 3478, MISC-anon-571e4375, -, 2716, stun
+Data e hora UTC(+0),IP Vulnerável,Porta Origem, Protocolo, Hostname Origem, [ORG-23b08], Serviço Vulnerável
+2024-08-16 [IPV6-6418c], [IPV4-f5e20], 3478, udp, -, 2716, stun
 
 Mais informações:
 
-software: MISC-anon-e4e02312'
+software: Coturn-4.6.2 'Gorst'
 valor da amplificação: 4.40

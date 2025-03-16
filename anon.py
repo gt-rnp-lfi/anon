@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 import argparse
 import concurrent.futures
@@ -18,6 +17,7 @@ from docx import Document
 from email_validator import EmailNotValidError, validate_email
 from spacy.language import Language
 from spacy.tokens import Span
+from transformers import AutoModelForTokenClassification, AutoTokenizer, pipeline
 
 
 def setup_logging(input_filename, log_dir="logs"):
@@ -130,7 +130,7 @@ def get_spacy_nlp():
     using simple regex patterns for EMAIL, IPV4, IPV6, IPV4-CIDR, and IPV6-CIDR.
     """
     nlp = spacy.load("pt_core_news_lg")
-    ruler = nlp.add_pipe("entity_ruler", before="ner")
+    ruler = nlp.add_pipe("entity_ruler", before="parser")
     patterns = [
         # Email: simple pattern with word boundaries
         {
@@ -167,16 +167,43 @@ def get_spacy_nlp():
         },
     ]
     ruler.add_patterns(patterns)
-    nlp.add_pipe("relabel_ip_entities", after="ner")
+    nlp.add_pipe("relabel_ip_entities", after="parser")
     nlp.add_pipe("merge_entities", last=True)
-    return nlp
+
+    # Transformer
+    MODEL_NAME = "Davlan/xlm-roberta-large-ner-hrl"
+    MODEL_DIR = os.path.join("models", MODEL_NAME)
+    os.makedirs(MODEL_DIR, exist_ok=True)
+
+    # Verificar se o modelo já foi baixado
+    if not os.path.exists(os.path.join(MODEL_DIR, "config.json")):
+        print(f"[*] Baixando o modelo {MODEL_NAME} para {MODEL_DIR}...")
+        tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+        model = AutoModelForTokenClassification.from_pretrained(MODEL_NAME)
+
+        # Salvar modelo localmente
+        tokenizer.save_pretrained(MODEL_DIR)
+        model.save_pretrained(MODEL_DIR)
+        print(f"[*] Modelo salvo em {MODEL_DIR}")
+    else:
+        print(f"[*] Carregando o modelo {MODEL_NAME} de {MODEL_DIR}...")
+
+    # Carregar modelo localmente
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
+    model = AutoModelForTokenClassification.from_pretrained(MODEL_DIR)
+    ner_pipeline = pipeline(
+        "ner", model=model, tokenizer=tokenizer, aggregation_strategy="simple"
+    )
+
+    return nlp, ner_pipeline
 
 
 class DataAnonymizer:
-    def __init__(self, db_path, nlp, logger):
+    def __init__(self, db_path, nlp, ner_pipeline, logger):
         self.db_path = db_path
         self.logger = logger
         self.nlp = nlp
+        self.ner_pipeline = ner_pipeline
         self.hit_counts = {
             "IPV4": 0,
             "IPV6": 0,
@@ -210,41 +237,61 @@ class DataAnonymizer:
             conn.commit()
 
     def anonymize_text(self, text):
-        """
-        Process the text with spaCy, and using the character offsets of the recognized entities,
-        rebuild the text with token-based replacement while preserving original formatting.
-        """
+        CONFIDENCE_THRESHOLD = 0.95
+        ALLOWED_ENTITIES = {"PER", "ORG", "EMAIL", "IPV4", "IPV6", "CIDR_V4", "CIDR_V6"}
+        # Executar a pipeline do spaCy primeiro (regras personalizadas)
         doc = self.nlp(text)
+        spacy_entities = [
+            {
+                "start": ent.start_char,
+                "end": ent.end_char,
+                "word": ent.text,
+                "entity_group": ent.label_,
+            }
+            for ent in doc.ents
+        ]
+
+        # Executar o modelo transformers para detecção de NER
+        transformers_entities = [
+            ent
+            for ent in self.ner_pipeline(text)
+            if ent["score"] >= CONFIDENCE_THRESHOLD
+        ]
+
+        # Combinar as entidades das duas fontes
+        all_entities = [
+            ent
+            for ent in (spacy_entities + transformers_entities)
+            if ent["entity_group"] in ALLOWED_ENTITIES
+        ]
+        all_entities = sorted(all_entities, key=lambda x: x["start"])
+
+        # Substituir entidades no texto original
         replacements = []
         last = 0
-        for ent in sorted(doc.ents, key=lambda x: x.start_char):
-            # Append text from the last end position to the current entity's start
-            replacements.append(text[last : ent.start_char])
-            original = ent.text
-            label = ent.label_
+        for ent in all_entities:
+            start, end, ent_text, label = (
+                ent["start"],
+                ent["end"],
+                ent["word"],
+                ent["entity_group"],
+            )
 
-            if label.upper() == "EMAIL":
-                try:
-                    valid = validate_email(original, check_deliverability=False)
-                    original = valid.normalized
-                    self.hit_counts["EMAIL"] += 1
-                except EmailNotValidError:
-                    # If the email is not valid, skip anonymization for this entity.
-                    replacements.append(original)
-                    last = ent.end_char
-                    continue
-            else:
-                if label.upper() in self.hit_counts:
-                    self.hit_counts[label.upper()] += 1
-                else:
-                    self.hit_counts["MISC"] += 1
+            # Preservar texto antes da entidade
+            replacements.append(text[last:start])
 
-            hash_val = self.hash_value(original)
-            self.save_to_db(label, original, hash_val)
-            replacement = f"{label}-anon-{hash_val[:8]}"
-            self.logger.log(red(f"Hit ({label}): {original}"))
+            # Criar hash da entidade
+            hash_val = self.hash_value(ent_text)
+            self.save_to_db(label, ent_text, hash_val)
+
+            # Substituir entidade por slug
+            replacement = f"[{label}-{hash_val[:5]}]"
+            self.logger.log(red(f"Hit ({label}): {ent_text} -> {replacement}"))
             replacements.append(replacement)
-            last = ent.end_char
+
+            last = end
+
+        # Adicionar o restante do texto
         replacements.append(text[last:])
         return "".join(replacements)
 
@@ -420,10 +467,10 @@ def main():
 
     logger_instance = setup_logging(args.input_file)
     log_instance = ColorLogger(logger_instance)
-    nlp = get_spacy_nlp()
+    nlp, ner_pipeline = get_spacy_nlp()
 
     db_path = os.path.join(os.getcwd(), "db", "anon.db")
-    anonymizer = DataAnonymizer(db_path, nlp, log_instance)
+    anonymizer = DataAnonymizer(db_path, nlp, ner_pipeline, log_instance)
     processor = FileProcessor(anonymizer, log_instance)
     try:
         processor.process_file(args.input_file)
