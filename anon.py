@@ -8,16 +8,24 @@ import logging
 import os
 import re
 import sqlite3
+import subprocess
 from contextlib import contextmanager
 from datetime import datetime as dt
 
 import pandas as pd
 import spacy
 from docx import Document
-from email_validator import EmailNotValidError, validate_email
 from spacy.language import Language
 from spacy.tokens import Span
 from transformers import AutoModelForTokenClassification, AutoTokenizer, pipeline
+
+# Globais
+DB_DIR = os.path.join(os.getcwd(), "db")
+DB_NAME = "entities.db"
+DB_PATH = os.path.join(DB_DIR, DB_NAME)
+
+MODEL_NAME = "Davlan/xlm-roberta-large-ner-hrl"
+MODEL_DIR = os.path.join("models", MODEL_NAME)
 
 
 def setup_logging(input_filename, log_dir="logs"):
@@ -126,10 +134,35 @@ def merge_entities(doc):
 
 def get_spacy_nlp():
     """
-    Load the spaCy model and configure the pipeline with an entity ruler
-    using simple regex patterns for EMAIL, IPV4, IPV6, IPV4-CIDR, and IPV6-CIDR.
+    Load the spaCy model
+    Configure the pipeline with `entity_ruler`
+    Add regex patterns for EMAIL, IPV4, IPV6, IPV4-CIDR, and IPV6-CIDR.
     """
-    nlp = spacy.load("pt_core_news_lg")
+
+    # Garantindo que o spaCy ok
+    SPACY_MODEL = "pt_core_news_lg"
+    SPACY_DIR = os.path.join("models", SPACY_MODEL)
+    os.makedirs(SPACY_DIR, exist_ok=True)
+    try:
+        nlp = spacy.load(SPACY_DIR)
+        print(f"[*] Modelo spaCy carregado de {SPACY_DIR}")
+    except OSError:
+        print(f"[*] Modelo {SPACY_MODEL} não encontrado. Baixando...")
+        # Baixar modelo via subprocess para evitar erro de permissão
+        subprocess.run(["spacy", "download", SPACY_MODEL], check=True)
+        # Copiar modelo baixado para a pasta local
+        subprocess.run(
+            [
+                "cp",
+                "-r",
+                os.path.expanduser(f"~/.cache/huggingface/hub/{SPACY_MODEL}"),
+                SPACY_DIR,
+            ]
+        )
+        # Carregar novamente
+        nlp = spacy.load(SPACY_MODEL)
+        print(f"[*] Modelo {SPACY_MODEL} baixado e carregado.")
+
     ruler = nlp.add_pipe("entity_ruler", before="parser")
     patterns = [
         # Email: simple pattern with word boundaries
@@ -170,10 +203,7 @@ def get_spacy_nlp():
     nlp.add_pipe("relabel_ip_entities", after="parser")
     nlp.add_pipe("merge_entities", last=True)
 
-    # Transformer
-    MODEL_NAME = "Davlan/xlm-roberta-large-ner-hrl"
-    MODEL_DIR = os.path.join("models", MODEL_NAME)
-    os.makedirs(MODEL_DIR, exist_ok=True)
+    # Configurações dos modelos
 
     # Verificar se o modelo já foi baixado
     if not os.path.exists(os.path.join(MODEL_DIR, "config.json")):
@@ -227,17 +257,22 @@ class DataAnonymizer:
     def hash_value(self, value):
         return hashlib.sha256(value.encode("utf-8")).hexdigest()
 
-    def save_to_db(self, data_type, original, hash_val):
-        """Save to db (type, original, hash)"""
+    def save_to_db(self, entity_type, original_name, full_hash):
+        slug_name = f"[{entity_type}-{full_hash[:5]}]"
+
         with self.get_connection() as conn:
             conn.execute(
-                "INSERT OR IGNORE INTO anon_pairs (type, original, hash) VALUES (?, ?, ?);",
-                (data_type, original, hash_val),
+                """
+                INSERT INTO entities (entity_type, original_name, slug_name, full_hash, first_seen, last_seen)
+                VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                ON CONFLICT(full_hash) DO UPDATE SET last_seen = CURRENT_TIMESTAMP;
+                """,
+                (entity_type, original_name, slug_name, full_hash),
             )
             conn.commit()
 
     def anonymize_text(self, text):
-        CONFIDENCE_THRESHOLD = 0.95
+        CONFIDENCE_THRESHOLD = 0.99
         ALLOWED_ENTITIES = {"PER", "ORG", "EMAIL", "IPV4", "IPV6", "CIDR_V4", "CIDR_V6"}
         # Executar a pipeline do spaCy primeiro (regras personalizadas)
         doc = self.nlp(text)
@@ -348,15 +383,18 @@ class FileProcessor:
             self.logger.log(blue(f"Diretório verificado/criado: {directory}"))
 
     def _setup_database(self):
-        db_path = os.path.join(self.db_dir, "anon.db")
-        with sqlite3.connect(db_path) as conn:
+        with sqlite3.connect(DB_PATH) as conn:
             conn.execute("PRAGMA journal_mode=WAL;")
             conn.execute(
                 """
-                CREATE TABLE IF NOT EXISTS anon_pairs (
-                    type TEXT NOT NULL,
-                    original TEXT NOT NULL,
-                    hash TEXT PRIMARY KEY
+                CREATE TABLE IF NOT EXISTS entities (
+                    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+                    entity_type   TEXT NOT NULL,
+                    original_name TEXT NOT NULL,
+                    slug_name     TEXT NOT NULL,
+                    full_hash     TEXT NOT NULL UNIQUE,
+                    first_seen    TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    last_seen      TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
                 );
                 """
             )
@@ -469,8 +507,7 @@ def main():
     log_instance = ColorLogger(logger_instance)
     nlp, ner_pipeline = get_spacy_nlp()
 
-    db_path = os.path.join(os.getcwd(), "db", "anon.db")
-    anonymizer = DataAnonymizer(db_path, nlp, ner_pipeline, log_instance)
+    anonymizer = DataAnonymizer(DB_PATH, nlp, ner_pipeline, log_instance)
     processor = FileProcessor(anonymizer, log_instance)
     try:
         processor.process_file(args.input_file)
