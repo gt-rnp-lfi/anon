@@ -28,7 +28,6 @@ dependencies = [
     { name = "protobuf" },
     { name = "python-docx" },
     { name = "sentencepiece" },
-    { name = "spacy" },
     { name = "torch" },
     { name = "transformers" },
 ]
@@ -44,7 +43,6 @@ requires-dist = [
     { name = "protobuf", specifier = ">=6.30.1" },
     { name = "python-docx", specifier = ">=1.1.2" },
     { name = "sentencepiece", specifier = ">=0.2.0" },
-    { name = "spacy", specifier = ">=3.8.4" },
     { name = "torch", specifier = ">=2.6.0" },
     { name = "transformers", specifier = ">=4.49.0" },
 ]
