@@ -13,8 +13,7 @@ Ferramenta `uv`. Para instalar:
 1. Clonar este repositório: `git clone git@github.com:gt-rnp-lfi/anon.git`
 2. Entrar no diretório: `cd ./anon`
 3. Instalar o python3.11: `uv python install 3.11`
-4. Atualizar as dependências: `uv sync`
-5. Rodar o script principal: `uv run anon.py -h`
+4. Rodar o script principal: `uv run anon.py -h`
 
 ## Exemplos
 
