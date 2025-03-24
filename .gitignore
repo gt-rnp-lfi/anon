@@ -1,6 +1,9 @@
 # Project-specific 
 models/*
 .vscode/*
+logs/*
+output/*
+data/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
