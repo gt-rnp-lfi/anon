@@ -22,7 +22,6 @@ from transformers import AutoModelForTokenClassification, AutoTokenizer
 
 # Globals
 ALLOW_LIST = ["TCP", "UDP", "HTTP", "HTTPS", "admin", "localhost"]
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 TRF_MODEL = "Davlan/xlm-roberta-base-ner-hrl"
 TRF_MODEL_PATH = os.path.join("models", TRF_MODEL)
 
@@ -146,11 +145,7 @@ def transformer_model_config():
     model = AutoModelForTokenClassification.from_pretrained(
         TRF_MODEL, cache_dir=TRF_MODEL_PATH
     )
-    # Send model to GPU, if possible
-    model.to(DEVICE)
-    # Inference mode, disable some layers used for training
-    model.eval()
-    print(f"Model device: {next(model.parameters()).device}")
+    model.to("cuda:0" if torch.cuda.is_available() else "cpu")
 
     # Transformer model config
     trf_model_config = [
@@ -195,20 +190,28 @@ def get_presidio_engines(trf_model_config, ner_model_config):
 
 
 def batch_process_text(texts, analyzer_engine, anonymizer_engine, batch_size=32):
-    """Process texts in batches to better utilize GPU."""
     results = []
     for i in range(0, len(texts), batch_size):
         batch = texts[i : i + batch_size]
         # Convert to strings and handle NaN values
         batch = [str(text) if pd.notna(text) else "" for text in batch]
 
-        # Run analysis in parallel on the batch
+        # Remove MedicalLicense detection
+        analyzer_engine.registry.remove_recognizer("MedicalLicenseRecognizer")
+
+        # Run analysis in parallel on the batch,
+        # while removing DATE_TIME detection
         analyzer_results = [
             analyzer_engine.analyze(
                 text=text,
                 language="pt",
                 score_threshold=0.6,
                 allow_list=ALLOW_LIST,
+                entities=[
+                    ent
+                    for ent in analyzer_engine.get_supported_entities()
+                    if ent != "DATE_TIME"
+                ],
             )
             for text in batch
         ]
@@ -265,11 +268,17 @@ def main() -> None:
             data, analyzer_engine, anonymizer_engine
         )
     else:
+        # Remove MedicalLicense detection
+        analyzer_engine.registry.remove_recognizer("MedicalLicenseRecognizer")
+        # Remove DATE_TIME detection
+        entities = analyzer_engine.get_supported_entities()
+        entities_without_date = [ent for ent in entities if ent != "DATE_TIME"]
         analyzer_results = analyzer_engine.analyze(
             text=data,
             language="pt",
             score_threshold=0.6,
             allow_list=ALLOW_LIST,
+            entities=entities_without_date,
         )
         anonymizer_results = anonymizer_engine.anonymize(
             text=data,
