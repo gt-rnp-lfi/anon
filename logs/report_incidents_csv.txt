@@ -1,0 +1,3 @@
+Arquivo processado: data/datasets-csv/incidents.csv
+Número de linhas processadas: 118
+Tempo total gasto: 38.93 segundos

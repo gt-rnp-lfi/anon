@@ -1,0 +1,119 @@
+ID,Assunto,IP Origem,Notificado em,Status,Tipo
+5962291,Hosts com o serviço SNMP vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_45ee2c752b],[DATE_TIME_4ca32ffef1] 03:28:00+00:00,Resolvido,Amplificação/SNMP
+5962300,Hosts com o serviço SSDP vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_a07d012e83],[DATE_TIME_4ca32ffef1] 03:29:59+00:00,Resolvido,Amplificação/SSDP
+5962301,Hosts com o serviço SSDP vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_64374aba6d],[DATE_TIME_4ca32ffef1] 03:31:27+00:00,Resolvido,Amplificação/SSDP
+5962303,Hosts com o serviço SSDP vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_8fddc686c0],[DATE_TIME_4ca32ffef1] 03:31:27+00:00,Resolvido,Amplificação/SSDP
+5962305,Hosts com o serviço SSDP vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_8e275fea3f],[DATE_TIME_4ca32ffef1] 03:31:27+00:00,Resolvido,Amplificação/SSDP
+5962306,Hosts com o serviço SSDP vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_6f655db765],[DATE_TIME_4ca32ffef1] 03:31:27+00:00,Resolvido,Amplificação/SSDP
+5962307,Hosts com o serviço SSDP vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_6c1e1f3af7],[DATE_TIME_4ca32ffef1] 03:31:27+00:00,Resolvido,Amplificação/SSDP
+5962308,Hosts com o serviço SSDP vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_3a6e3fdd8b],[DATE_TIME_4ca32ffef1] 03:31:27+00:00,Resolvido,Amplificação/SSDP
+5962309,Hosts com o serviço SSDP vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_f549316851],[DATE_TIME_4ca32ffef1] 03:31:27+00:00,Resolvido,Amplificação/SSDP
+5962311,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_5a18b8fc99],[DATE_TIME_4ca32ffef1] 03:31:22+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962312,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_fda2b247e3],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962313,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_e79a6dcf47],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962314,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_93aa90d70c],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962315,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_744621cdd6],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962316,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_79154e3408],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962317,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_17cff28fb9],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962318,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_dae3a3d627],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962319,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_30d3befdc4],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962320,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_3d189cf6f8],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962321,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_d0969913c4],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962322,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_097b774392],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962323,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_693bf5abeb],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962324,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_9075f1793c],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962325,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_893d07da70],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962326,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_fd778f9e09],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962327,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_2b4bbfda72],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962328,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_feb75f4179],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962329,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_47eb19c516],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962330,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_7ac4c4aa7a],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962331,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_0c91c7a27a],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962332,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_262a1a110a],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962333,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_bdabb0595e],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962334,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_92db9a6858],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962335,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_19a8ee4484],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962336,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_7ca90c0d8d],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962337,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_ed6cd6109b],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962338,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_bc37aa3b07],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962339,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_20d2542775],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962340,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_e8178a4cf8],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962341,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_7a30af2e18],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962342,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_22cecbfb21],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962343,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_8af5ea05e5],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962344,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_188f2762e0],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962345,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_c13c567fce],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962346,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_3e4d2f9e67],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962347,Servidores Web vulneráveis ao ataque Freak,[IP_ADDRESS_e31a1bae76],[DATE_TIME_4ca32ffef1] 03:33:27+00:00,Resolvido,Acesso Indevido-Vazamento/Freak
+5962359,Hosts com o serviço WS-Discovery vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_8adcd54d62],[DATE_TIME_4ca32ffef1] 03:47:27+00:00,Resolvido,Amplificação/WSDISCOVERY
+5962360,Hosts com o serviço WS-Discovery vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_c4958fb2fd],[DATE_TIME_4ca32ffef1] 03:47:27+00:00,Resolvido,Amplificação/WSDISCOVERY
+5962361,Hosts com o serviço WS-Discovery vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_c40da4f8a5],[DATE_TIME_4ca32ffef1] 03:47:27+00:00,Resolvido,Amplificação/WSDISCOVERY
+5962362,Hosts com o serviço WS-Discovery vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_7f7a86050c],[DATE_TIME_4ca32ffef1] 03:47:27+00:00,Resolvido,Amplificação/WSDISCOVERY
+5962365,Hosts com o serviço WS-Discovery vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_54e2d52f43],[DATE_TIME_4ca32ffef1] 03:47:27+00:00,Resolvido,Amplificação/WSDISCOVERY
+5962366,Hosts com o serviço WS-Discovery vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_0d708eed8d],[DATE_TIME_4ca32ffef1] 03:47:27+00:00,Resolvido,Amplificação/WSDISCOVERY
+5962367,Hosts com o serviço WS-Discovery vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_406221fa0c],[DATE_TIME_4ca32ffef1] 03:47:27+00:00,Resolvido,Amplificação/WSDISCOVERY
+5962446,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_d69f2d0790],[DATE_TIME_4ca32ffef1] 05:14:18+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962447,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_082b1e5ce0],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962449,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_b462f31eee],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962450,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_ba775d714b],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962451,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_945a041063],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962452,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_e5b640c5d9],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962453,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_7ae8f88a9e],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962455,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_2eaabe022c],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962456,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_2ee6665fd4],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962458,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_7f9cfbfc45],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962460,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_144ee7137c],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962461,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_9383d87bc9],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962462,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_1c7c92c851],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962465,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_6a261910ea],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962466,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_17548b2e94],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962467,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_527b22d945],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962468,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_0350973412],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5962469,Host com o serviço MSMQ vulnerável,[IP_ADDRESS_c94d972ca0],[DATE_TIME_4ca32ffef1] 05:15:28+00:00,Resolvido,Tentativa de Exploração de Vulnerabilidades
+5963415,Host com o serviço MYSQL vulnerável,[IP_ADDRESS_c7253650e8],[DATE_TIME_813efe731b] 02:54:22+00:00,Resolvido,Acesso Indevido-Vazamento/MS-SQL
+5963530,Host com o serviço SMB vulnerável,[IP_ADDRESS_094c20de55],[DATE_TIME_813efe731b] 03:21:52+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
+5963751,Hosts com o serviço NTP vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_4040414a6b],[DATE_TIME_25449a7b13] 02:59:32+00:00,Resolvido,Amplificação/NTP
+5964166,Host com o serviço DVR DHCPdiscover vulnerável que pode ser utilizado em ataques DDoS,[IP_ADDRESS_a7f50c2f1a],[DATE_TIME_9fe75ed833] 02:05:46+00:00,Resolvido,Amplificação/Dhcpdiscover
+5964610,Host com o serviço SMB vulnerável,[IP_ADDRESS_dc69a102f6],[DATE_TIME_4395dd7ec1] 03:24:18+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
+5965135,Host com o serviço Redis vulnerável,[IP_ADDRESS_c398034e5f],[DATE_TIME_7756f27e89] 03:18:37+00:00,Resolvido,Acesso Indevido-Vazamento/Redis
+5966062,Host com o serviço SMB vulnerável,[IP_ADDRESS_647174c6ff],[DATE_TIME_b1861a9c2b] 03:24:32+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
+5966223,Host infectado com malware,[IP_ADDRESS_de1e7bfcf4],[DATE_TIME_b1861a9c2b] 04:46:34+00:00,Resolvido,Malware/Outros
+5966612,Servidores Web vulneráveis ao ataque [PERSON_0388b3e374],[IP_ADDRESS_5d5573bd01]69,[DATE_TIME_2483272fac] 04:13:12+00:00,Resolvido,Acesso Indevido-Vazamento/Poodle
+5967178,Host com o serviço SMB vulnerável,[IP_ADDRESS_d8f4a9abae],[DATE_TIME_9ee6cbbc9c] 03:18:25+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
+5968096,Host com o serviço MYSQL vulnerável,[IP_ADDRESS_5ac8af9a0f],[DATE_TIME_0e7e152cf8] 02:58:58+00:00,Resolvido,Acesso Indevido-Vazamento/MS-SQL
+5969489,Host com o serviço MYSQL vulnerável,[IP_ADDRESS_c7253650e8],[DATE_TIME_e4d1cb5a96] 02:48:59+00:00,Resolvido,Acesso Indevido-Vazamento/MS-SQL
+5969767,Host com serviço de API Kubernetes aberto,[IP_ADDRESS_7c32b12f83],[DATE_TIME_eb8a9b426f] 02:23:23+00:00,Resolvido,Acesso Indevido-Vazamento/Kubernetes API
+5970471,Host infectado com malware,[IP_ADDRESS_c8393878a5],[DATE_TIME_9d2db884ba] 15:00:19+00:00,Resolvido,Malware/Outros
+5971970,Host vulnerável executando o serviço Remote Desktop,[IP_ADDRESS_cea55ec1bb],[DATE_TIME_46c637e6d6] 19:11:50+00:00,Resolvido,Uso indevido/RDP Acessível
+5971978,Host vulnerável executando o serviço Remote Desktop,[IP_ADDRESS_fb548557b0],[DATE_TIME_46c637e6d6] 19:11:50+00:00,Resolvido,Uso indevido/RDP Acessível
+5972008,Host vulnerável executando o serviço Remote Desktop,[IP_ADDRESS_e2cd1ceddb],[DATE_TIME_46c637e6d6] 19:11:50+00:00,Resolvido,Uso indevido/RDP Acessível
+5972029,Host vulnerável executando o serviço Remote Desktop,[IP_ADDRESS_36b15bf231],[DATE_TIME_46c637e6d6] 19:11:50+00:00,Resolvido,Uso indevido/RDP Acessível
+5972057,Host vulnerável executando o serviço Remote Desktop,[IP_ADDRESS_0f8f1c0049],[DATE_TIME_46c637e6d6] 19:11:50+00:00,Resolvido,Uso indevido/RDP Acessível
+5972102,Host vulnerável executando o serviço Remote Desktop,[IP_ADDRESS_c9feb8ca80],[DATE_TIME_46c637e6d6] 19:11:50+00:00,Resolvido,Uso indevido/RDP Acessível
+5972845,Host vulnerável executando o serviço SSH,[IP_ADDRESS_a6f9b38b84],[DATE_TIME_39048d32d7] 18:28:14+00:00,Resolvido,Uso indevido/SSH Acessível
+5972894,Host vulnerável executando o serviço SSH,[IP_ADDRESS_1633d8646e],[DATE_TIME_39048d32d7] 18:28:14+00:00,Resolvido,Uso indevido/SSH Acessível
+5972985,Host vulnerável executando o serviço SSH,[IP_ADDRESS_ac0215d1d4],[DATE_TIME_39048d32d7] 18:28:14+00:00,Resolvido,Uso indevido/SSH Acessível
+5973011,Host vulnerável executando o serviço SSH,[IP_ADDRESS_fc4ff81905],[DATE_TIME_39048d32d7] 18:28:14+00:00,Resolvido,Uso indevido/SSH Acessível
+5973022,Host vulnerável executando o serviço SSH,[IP_ADDRESS_1973d01305],[DATE_TIME_39048d32d7] 18:28:14+00:00,Resolvido,Uso indevido/SSH Acessível
+5975797,Host vulnerável com produto [ORGANIZATION_c7bac46904] Exchange Server,[IP_ADDRESS_d69f2d0790],[DATE_TIME_c8a12cd5db] 02:49:08+00:00,Resolvido,Acesso Indevido-Vazamento/Microsoft [ORGANIZATION_d60a318dd8]
+5977729,Host com o serviço MYSQL vulnerável,[IP_ADDRESS_77aebfddd3],[DATE_TIME_7c44b6b535] 03:00:35+00:00,Resolvido,Acesso Indevido-Vazamento/MS-SQL
+5978020,Hosts com o serviço PortMapper vulneráveis que podem ser utilizados em ataques DDoS,[IP_ADDRESS_508a99aad9],[DATE_TIME_ef6b8c4dfe] 03:19:58+00:00,Resolvido,Amplificação/Portmapper
+5979463,Host executando versão vulnerável do Exim,[IP_ADDRESS_28ae742e3c],[DATE_TIME_4ca32ffef1] 03:27:27+00:00,Resolvido,Acesso Indevido-Vazamento/Exim
+5964916,Host com o serviço SMB vulnerável,[IP_ADDRESS_094c20de55],[DATE_TIME_2a9b66eacb] 03:22:47+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
+5965110,Host com o serviço MYSQL vulnerável,[IP_ADDRESS_c7253650e8],[DATE_TIME_7756f27e89] 02:53:37+00:00,Resolvido,Acesso Indevido-Vazamento/MS-SQL
+5965777,Host com o serviço SMB vulnerável,[IP_ADDRESS_dc69a102f6],[DATE_TIME_eeaf707c4d] 03:29:24+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
+5966067,Host com o serviço SMB vulnerável,[IP_ADDRESS_094c20de55],[DATE_TIME_b1861a9c2b] 03:24:32+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
+5966540,Host com o serviço MYSQL vulnerável,[IP_ADDRESS_c7253650e8],[DATE_TIME_2483272fac] 02:51:48+00:00,Resolvido,Acesso Indevido-Vazamento/MS-SQL
+5967356,Host com o serviço Redis vulnerável,[IP_ADDRESS_c398034e5f],[DATE_TIME_8042551550] 03:08:49+00:00,Resolvido,Acesso Indevido-Vazamento/Redis
+5967701,Host com o serviço SMB vulnerável,[IP_ADDRESS_094c20de55],[DATE_TIME_c0b74d3710] 03:21:42+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
+5967705,Host com o serviço SMB vulnerável,[IP_ADDRESS_647174c6ff],[DATE_TIME_c0b74d3710] 03:21:42+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
+5967918,Host com o serviço MYSQL vulnerável,[IP_ADDRESS_c7253650e8],[DATE_TIME_216fd29993] 02:51:49+00:00,Resolvido,Acesso Indevido-Vazamento/MS-SQL
+5968592,Host com o serviço SMB vulnerável,[IP_ADDRESS_dc69a102f6],[DATE_TIME_7262a4fcd6] 03:19:26+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
+5968926,Host com o serviço SMB vulnerável,[IP_ADDRESS_094c20de55],[DATE_TIME_d92e6a9208] 03:21:43+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
+5969309,Host com o serviço SMB vulnerável,[IP_ADDRESS_647174c6ff],[DATE_TIME_b23bf0cd97] 03:14:51+00:00,Resolvido,Acesso Indevido-Vazamento/SMB
+5969614,Host com o serviço MYSQL vulnerável,[IP_ADDRESS_5ac8af9a0f],[DATE_TIME_98c8aae863] 02:47:07+00:00,Resolvido,Acesso Indevido-Vazamento/MS-SQL
+5971463,Host com o serviço MYSQL vulnerável,[IP_ADDRESS_c7253650e8],[DATE_TIME_4a37c6f7ec] 02:49:29+00:00,Resolvido,Acesso Indevido-Vazamento/MS-SQL
+5971774,Host com o serviço MYSQL vulnerável,[IP_ADDRESS_5ac8af9a0f],[DATE_TIME_46c637e6d6] 02:45:59+00:00,Resolvido,Acesso Indevido-Vazamento/MS-SQL
+5973350,Host com o serviço MYSQL vulnerável,[IP_ADDRESS_c7253650e8],[DATE_TIME_61c02dcc06] 03:00:26+00:00,Resolvido,Acesso Indevido-Vazamento/MS-SQL
+5974638,Host com o serviço MYSQL vulnerável,[IP_ADDRESS_c7253650e8],[DATE_TIME_b859860798] 18:34:39+00:00,Resolvido,Acesso Indevido-Vazamento/MS-SQL
+5979870,Host com o serviço MYSQL vulnerável,[IP_ADDRESS_77aebfddd3],[DATE_TIME_ddda57e48b] 02:47:31+00:00,Resolvido,Acesso Indevido-Vazamento/MS-SQL

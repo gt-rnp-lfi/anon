@@ -1,0 +1,293 @@
+Nível,Andamento,Número do chamado,Nome do solicitante,Breve descrição (Detalhes),É um chamado principal,Data alvo,Data alvo de resposta,'Organização' (Solicitante),Tipo de chamado,Status,Operador,Resolvido(a)s,Fechado(a)s,Impacto,Categoria,Subcategoria,Data alvo do SLA,Respondido,Data de resposta,Grupo de operadores,Operador do escalonamento/rebaixamento,Pedido,Ação,Anexos,Chamados similares
+Chamado de 1º nível,Fechado,RNP2022-053173,CERT.br,Alerta: [AS 2716] servidor NTP mal configurado,False,[DATE_TIME_5057786e93] 11:42:00,,Clientes,Incidente,Fechado,POP[IP_ADDRESS_71546855d6]RS[IP_ADDRESS_71546855d6]CERT-RS,True,True,,Segurança,[ORGANIZATION_b2df253117],,False,,POP[IP_ADDRESS_71546855d6]RS[IP_ADDRESS_71546855d6]CERT-RS,,"[DATE_TIME_3d9103508d] 11:12 CERT.br: 
+Data de envio: Jun 6, 2022 11:10 AM
+Para: [EMAIL_ADDRESS_f6f7086365], [EMAIL_ADDRESS_a0a85d701e]
+CC: [EMAIL_ADDRESS_83824c64b2]
+Assunto: Alerta: [AS 2716] servidor NTP mal configurado
+
+Caro responsável,
+
+Os IPs presentes no log abaixo são servidores NTP mal configurados sob
+sua responsabilidade (123/udp). Estes servidores podem ser abusados
+para fazer parte de ataques distribuídos de negação de serviço,
+consumindo recursos da sua rede e impactando terceiros.
+
+Lembramos que os endereços IP listados também podem ser dispositivos
+de rede com funcionalidade NTP, como roteadores e CPEs (modem ou
+roteador de uso doméstico instalado nos clientes).
+
+Gostaríamos de solicitar que:
+
+* Os servidores NTP listados sejam configurados de modo a corrigir
+ este problema.
+
+Uma descrição do problema e possíveis soluções podem ser encontradas
+no final deste documento.
+
+Se você não for a pessoa correta para corrigir o problema destes
+servidores NTP mal configurados, por favor repasse essa mensagem para
+alguém de sua organização que possa fazê-lo.
+
+Os indicadores no campo 'Resultados do Teste' indicam os tipos de
+problemas testados e significam:
+
+* monlist: status/pacotes/bytes, onde status pode ser ""timeout"",
+   ""open"" ou ""closed"", e pacotes/bytes são o tamanho da resposta
+   recebida, em pacotes/bytes;
+
+* readvar: status/pacotes/bytes, onde status pode ser ""timeout"",
+   ""open"" ou ""closed"", e pacotes/bytes sao o tamanho da resposta
+   recebida, em pacotes/bytes;
+
+====================================================================================
+Endereco IP      | ASN    | Status | Data do Teste        | Resultados do Teste
+[IP_ADDRESS_f36fd7c474]    | 2716   | OPEN   | 2022-06-06T11:56:56Z | monlist: timeout/0/0, readvar: open/1/400
+====================================================================================
+
+Mais detalhes sobre o porque do envio desta mensagem, quem é o
+CERT.br e como resolver este problema estão listados abaixo.
+
+Cordialmente,
+-- 
+CERT.br
+<[EMAIL_ADDRESS_83824c64b2]>
+[URL_ea4f5d47bf]
+
+* O que é um servidor NTP mal configurado e passível de amplificação?
+
+Um servidor NTP é considerado mal configurado e passível de
+  amplificação quando aceita determinados comandos, como monlist ou
+  readvar, que permitem gerar respostas muito maiores que a pergunta,
+  para origens forjadas.
+
+* Por que devo me preocupar com isso?
+
+Um servidor NTP mal configurado pode ser abusado para causar danos a
+  terceiros, envolvendo sua rede em ataques a outras organizações,
+  além de implicar em um maior consumo de banda.
+
+Informações adicionais sobre como evitar que sua rede seja abusada
+  para este e outros ataques DDoS podem ser econtrados aqui:
+
+[URL_eebddb46c5]
+
+* Como faço para corrigir o problema em sistemas Unix?
+
+1. Desabilite o comando ""monlist"".  Isso pode ser feito de duas
+      maneiras:
+
+- Inclua no ntpd.conf a seguinte linha:
+
+disable monitor
+
+- Instale a versao 4.2.7p26 ou mais atual, que não possui o
+       comando monlist.
+
+2. Desabilite o comando ""readvar""
+
+- Inclua no ntpd.conf as seguintes linhas:
+
+restrict default kod notrap nomodify nopeer noquery
+       restrict -6 default kod notrap nomodify nopeer noquery
+
+* Onde posso obter informações adicionais sobre configuração segura de
+  servidores NTP?
+
+- Guia NTP para Linux/BSD
+    [URL_8810d617ed]
+
+Team [ORGANIZATION_af0c3a7b9c] Secure NTP Template (inclui cisco e juniper)
+  - [URL_ad8fce50c6]
+
+* Como o [ORGANIZATION_54947c67d4] sabe que este é um servidor NTP vulnerável?
+
+O [ORGANIZATION_54947c67d4] está recebendo notificações com listas de servidores NTP
+  que possivelmente estão sendo abusados e utilizados em ataques
+  distribuídos de negação de serviços (DDoS). O [ORGANIZATION_54947c67d4] está
+  notificando os responsáveis pelos servidores brasileiros presentes
+  nestas listas.
+
+* Como posso ter certeza que resolvi o problema?
+
+Você pode verificar seu servidor através dos seguintes comandos:
+  (preferencialmente execute-os a partir da Internet, ou seja, fora de
+  uma rede interna que tenha",,"[DATE_TIME_3d9103508d] 11:14 [EMAIL_ADDRESS_1d555801b1]: 
+<img src='/icons/progresstrail.mail/16' style='vertical-align: text-bottom' width='16' alt='E-mails enviados'></img> 00. Registro - Notifica&ccedil;&atilde;o ao Solicitante
+
+[DATE_TIME_3d9103508d] 11:13 [EMAIL_ADDRESS_1d555801b1]: 
+<img src='/icons/progresstrail.mail/16' style='vertical-align: text-bottom' width='16' alt='E-mails enviados'></img> Notificação de Fila - Novo Chamado","<iframe width=""100%"" height=""100%"" style=""border: 0;"" src='/services/affiliation-frontend-v1/#/incidentMemofield?id=772f5398-052d-4a66-b828-5005271947b7&lang=pt-BR'></iframe>"
+Chamado de 1º nível,Fechado,RNP2022-055443,CERT.br,Re: Compromised host used for an attack: [IP_ADDRESS_563fdbc6f5],False,[DATE_TIME_5a945e24f2] 09:30:00,,Clientes,Incidente,Fechado,POP[IP_ADDRESS_71546855d6]RS[IP_ADDRESS_71546855d6]CERT-RS,True,True,,Segurança,[ORGANIZATION_b2df253117],,False,,POP[IP_ADDRESS_71546855d6]RS[IP_ADDRESS_71546855d6]CERT-RS,,"[DATE_TIME_17dea1afe5] 08:32 CERT.br: 
+Data de envio: Jun 13, 2022 8:30 AM
+Para: ""NFOservers.com DDoS notifier"" <[EMAIL_ADDRESS_92a6206f7f]>, [EMAIL_ADDRESS_f6f7086365], [EMAIL_ADDRESS_a0a85d701e]
+CC: [EMAIL_ADDRESS_83824c64b2]
+Assunto: Re: Compromised host used for an attack: [IP_ADDRESS_563fdbc6f5]
+
+Hello,
+
+CERT.br works as a coordinating team for incidents and abuses related
+to Brazilian networks. We are listed in the ""remarks"" notes of the
+Brazilian Whois Server output to receive copies of complaints, but we
+are not the technical or abuse contact of any network.
+
+We are forwarding your email to the proper contacts for this network
+so they can handle this incident.
+
+Original message was attached to this email.
+
+Thank you for reporting this incident,
+--
+CERT.br/NIC.br
+<[EMAIL_ADDRESS_83824c64b2]>
+[URL_ea4f5d47bf]
+
+=======================================================================
+----- Original message as text -----
+From: [ORGANIZATION_1df86da352] DDoS notifier <[EMAIL_ADDRESS_92a6206f7f]>
+To: [EMAIL_ADDRESS_83824c64b2]
+Subject: Compromised host used for an attack: [IP_ADDRESS_563fdbc6f5]
+Date: Sun, 12 Jun 2022 11:55:20 -0700
+Message-ID: <[EMAIL_ADDRESS_4d9f51dde4]>
+
+An IP address ([IP_ADDRESS_563fdbc6f5]) under your control appears to have attacked one of our customers as part of a coordinated DDoS botnet. We manually reviewed the captures from this attack and do not believe that your IP address was spoofed, based on the limited number of distinct hosts attacking us, the identicality of many attacking IP addresses to ones we've seen in the past, and the non-random distribution of IP addresses.
+
+It is possible that this host is one of the following, from the responses that others have sent us:
+
+- A compromised router, such as a D-Link that is running with WAN access enabled; a [ORGANIZATION_9954db40ae] which still allows a default admin username and password; a Netis, with a built-in internet-accessible backdoor ([URL_2764a7b048]); or one running an old AirOS version with a vulnerable and exposed administrative interface
+- An IPTV device that is vulnerable to compromise (such as HTV), either directly through the default firmware or through a trojan downloaded app
+- A compromised webhost, such as one running a vulnerable version of Drupal (for instance, using the vulnerability discussed at [URL_9346d9f602]), WordPress, phpMyAdmin, or zPanel
+- A compromised DVR, such as a ""Hikvision"" brand device (ref: [URL_4d5849d65d])
+- A compromised IPMI device, such as one made by [ORGANIZATION_e8804ebb01] (possibly because it uses the default U/P of ADMIN/ADMIN or because its password was found through an exploit described at [URL_643058c363])
+- A compromised Xerox-branded device
+- Some other compromised standalone device
+- A server with an insecure password that was brute-forced, such as through SSH or RDP
+- A server running an improperly secured Hadoop installation
+- A server running a pre-13.10.3 GitLab instance that is vulnerable to CVE-2021-22205
+- A compromised [ORGANIZATION_c7bac46904] DNS server (through the July 2020 critical vulnerability)
+
+The overall botnet attack was Nx10Gbps in size (with traffic from your host as well as some others) and caused significant packet loss for our clients due to external link saturation. It required an emergency null-route operation on our side to mitigate.
+
+Attacks like this are usually made very short, intentionally, so that they are not as noticeable and slip past certain automatic mitigation systems. From your side, you would be able to observe the attack as a burst of traffic that likely saturated the network adapter of the source device for perhaps 30 seconds. Since the source device is a member of a botnet that is being used for many attacks, you will see many other mysterious bursts of outbound traffic, as well.
+
+This is example traffic from t",,"[DATE_TIME_17dea1afe5] 08:33 [EMAIL_ADDRESS_1d555801b1]: 
+<img src='/icons/progresstrail.mail/16' style='vertical-align: text-bottom' width='16' alt='E-mails enviados'></img> 00. Registro - Notifica&ccedil;&atilde;o ao Solicitante
+
+[DATE_TIME_17dea1afe5] 08:32 [EMAIL_ADDRESS_1d555801b1]: 
+<img src='/icons/progresstrail.mail/16' style='vertical-align: text-bottom' width='16' alt='E-mails enviados'></img> Notifica&ccedil;&atilde;o de Fila - Novo Chamado
+
+[DATE_TIME_17dea1afe5] 08:32 CERT.br: 
+<img src='/icons/progresstrail.attachment/16' style='vertical-align: text-bottom' width='16' alt='Arquivo anexado'></img> original message","<iframe width=""100%"" height=""100%"" style=""border: 0;"" src='/services/affiliation-frontend-v1/#/incidentMemofield?id=61c568f9-2719-47a3-be43-2e9c6059e9a5&lang=pt-BR'></iframe>"
+Chamado de 1º nível,Fechado,RNP2022-089514,CERT.br,Alerta: [AS 2716] servico CoAP habilitado,False,[DATE_TIME_a9d8b9481a] 09:30:00,,Clientes,Incidente,Fechado,POP[IP_ADDRESS_71546855d6]RS[IP_ADDRESS_71546855d6]CERT-RS,True,True,,Segurança,[ORGANIZATION_b2df253117],,False,,POP[IP_ADDRESS_71546855d6]RS[IP_ADDRESS_71546855d6]CERT-RS,,"[DATE_TIME_2d2b32fdc0] 08:02 CERT.br: 
+Data de envio: Aug 19, 2022 8:01 AM
+Para: [EMAIL_ADDRESS_f6f7086365], [EMAIL_ADDRESS_a0a85d701e]
+CC: [EMAIL_ADDRESS_83824c64b2]
+Assunto: Alerta: [AS 2716] servico CoAP habilitado
+
+Caro responsável,
+
+Os IPs presentes no log abaixo são de equipamentos sob sua
+responsabilidade com o serviço Constrained Application Protocol (CoAP)
+habilitado na porta 5683/udp. Este serviço pode ser abusado para fazer
+parte de ataques distribuídos de negação de serviço, consumindo recursos
+da sua rede e impactando terceiros.
+
+Lembramos que os endereços IP listados também podem ser dispositivos de
+rede com o servico CoAP habilitado, como roteadores e CPEs (modem ou
+roteador de uso doméstico instalado nos clientes).
+
+Gostaríamos de solicitar que:
+
+* o serviço CoAP seja desabilitado no equipamento; ou
+
+* caso o CoAP seja necessário, seja configurado de modo que esteja
+   disponível apenas para a rede local ou para os IPs que necessitam
+   do acesso a esse serviço.
+
+Uma descrição do problema e possíveis soluções podem ser encontradas no
+final deste documento.
+
+Se você não for a pessoa correta para corrigir o problema destes
+equipamentos com o serviço CoAP habilitado, por favor repasse essa
+mensagem para alguém de sua organização que possa fazê-lo.
+
+O indicador no campo 'Resultados do Teste' indica o tipo de problema
+testado e significa:
+
+* coap: status/pacotes/bytes, onde status é ""open"", e
+   pacotes/bytes indicam o tamanho da resposta recebida, em
+   pacotes/bytes;
+
+====================================================================================
+Endereco IP      | ASN    | Status | Data do Teste        | Resultados do Teste
+[IP_ADDRESS_9648c5bbd3]    | 2716   | OPEN   | 2022-08-19T10:41:52Z | coap: open/1/113
+====================================================================================
+
+Mais detalhes sobre o porque do envio desta mensagem, quem é o
+CERT.br e como resolver este problema estão listados abaixo.
+
+Cordialmente,
+-- 
+CERT.br
+<[EMAIL_ADDRESS_83824c64b2]>
+[URL_ea4f5d47bf]
+
+* O que é o protocolo CoAP (5683/udp)?
+
+O protocolo Constrained Application Protocol (CoAP) é um protocolo
+  para transferência de conteúdo web através do protocolo UDP. Esse
+  protocolo é utilizado principalmente por dispositivos com recursos
+  limitados de memória.
+
+Caso esteja acessível a toda a Internet via UDP, esse serviço pode
+  ser explorado para ataques DDoS que usem amplificação. Isto ocorre
+  porque o atacante envia uma requisição forjando o IP da vítima e o
+  servidor com o serviço CoAP retorna uma resposta muito maior que a
+  requisição.
+
+* Por que devo me preocupar com isso?
+
+O CoAP pode ser abusado para causar danos a terceiros, envolvendo sua
+  rede em ataques a outras organizações, além de implicar em um consumo
+  de banda maior.
+
+Informações adicionais sobre como evitar que sua rede seja abusada
+  para este e outros ataques DDoS podem ser encontradas aqui:
+
+[URL_eebddb46c5]
+
+* Como faço para corrigir o problema?
+
+Se o serviço CoAP não for utilizado na sua rede desabilite o serviço no
+  seu dispositivo. Se o recurso for necessário em sua rede, configure-o
+  de modo que esteja disponível apenas para a rede local ou para os 
+  IPs que necessitam do acesso a esse serviço.
+
+* Onde posso obter informações adicionais sobre o abuso do protocolo
+  CoAP para ataques DDoS?
+
+- CoAP Attacks In The Wild
+    [URL_08ad946c97]
+
+* Como o [ORGANIZATION_54947c67d4] sabe que este é um servidor CoAP vulnerável?
+
+O [ORGANIZATION_54947c67d4] está recebendo notificações com listas de servidores CoAP 
+  que possivelmente estão sendo abusados e utilizados em ataques
+  distribuídos de negação de serviços (DDoS).  O [ORGANIZATION_54947c67d4] está
+  notificando os responsáveis pelos servidores brasileiros presentes
+  nestas listas.
+
+* Como posso ter certeza que resolvi o problema?
+
+Você pode verificar seu servidor através dos seguintes comandos:
+  (preferencialmente execute-os a partir da Internet, ou seja, fora de
+  uma rede interna que tenha permissão de acesso ao servidor).
+
+$ printf \","[DATE_TIME_2d2b32fdc0] 08:04 Ipezinho Bot: 
+Endereço direto para o chamado:
+
+Para Operadores: [URL_5d658a633f]
+
+Para Cliente: [URL_421bea2297]","[DATE_TIME_2d2b32fdc0] 08:04 [EMAIL_ADDRESS_1d555801b1]: 
+<img src='/icons/progresstrail.mail/16' style='vertical-align: text-bottom' width='16' alt='E-mails enviados'></img> 00. Registro - Notifica&ccedil;&atilde;o ao Solicitante
+
+[DATE_TIME_2d2b32fdc0] 08:03 [EMAIL_ADDRESS_1d555801b1]: 
+<img src='/icons/progresstrail.mail/16' style='vertical-align: text-bottom' width='16' alt='E-mails enviados'></img> Notificação de Fila - Novo Chamado","<iframe width=""100%"" height=""100%"" style=""border: 0;"" src='/services/affiliation-frontend-v1/#/incidentMemofield?id=21b89b9d-ed72-40bb-bf9d-fff0e6ff7ffa&lang=pt-BR'></iframe>"
