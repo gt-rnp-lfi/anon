@@ -14,7 +14,7 @@ import spacy
 import torch
 from docx import Document
 from huggingface_hub import snapshot_download
-from presidio_analyzer import AnalyzerEngine
+from presidio_analyzer import AnalyzerEngine, Pattern, PatternRecognizer
 from presidio_analyzer.nlp_engine import NerModelConfiguration, TransformersNlpEngine
 from presidio_anonymizer import AnonymizerEngine, EngineResult, OperatorConfig
 from presidio_anonymizer.operators import Operator, OperatorType
@@ -22,8 +22,8 @@ from transformers import AutoModelForTokenClassification, AutoTokenizer
 
 # Globals
 ALLOW_LIST = ["TCP", "UDP", "HTTP", "HTTPS", "admin", "localhost"]
-TRF_MODEL = "Davlan/xlm-roberta-base-ner-hrl"
-TRF_MODEL_PATH = os.path.join("models", TRF_MODEL)
+TRANSFORMER_MODEL = "Davlan/xlm-roberta-base-ner-hrl"
+TRF_MODEL_PATH = os.path.join("models", TRANSFORMER_MODEL)
 
 # Enable CUDA optimizations
 torch.backends.cudnn.benchmark = True
@@ -51,6 +51,7 @@ def initialize_db():
     os.makedirs(db_dir, exist_ok=True)
     db_path = os.path.join(db_dir, "entities.db")
     with sqlite3.connect(db_path, check_same_thread=False) as conn:
+        # Little optimizations
         conn.execute("PRAGMA journal_mode=WAL;")
         conn.execute("PRAGMA synchronous=NORMAL;")
         conn.execute("PRAGMA cache_size=10000;")
@@ -96,6 +97,14 @@ def save_entity(
         conn.commit()
 
 
+class ASNRecognizer(PatternRecognizer):
+    PATTERNS = [Pattern("ASN", r"(?<=\W|^)AS[\s-_]*\d{1,10}(?=\W|$)", 0.5)]
+    CONTEXT = []
+
+    def __init__(self):
+        super().__init__(supported_entity="AS_NUMBER", patterns=ASNRecognizer.PATTERNS)
+
+
 class CustomSlugAnonymizer(Operator):
     # Strip before hashing to guarantee uniqueness
     def operate(self, text: str, params: dict = None) -> str:
@@ -130,9 +139,9 @@ def models_check() -> None:
 
     # Transformer
     if not os.path.exists(TRF_MODEL_PATH):
-        print(f"Downloading transformer `{TRF_MODEL}`...")
+        print(f"Downloading transformer `{TRANSFORMER_MODEL}`...")
         snapshot_download(
-            repo_id=TRF_MODEL,
+            repo_id=TRANSFORMER_MODEL,
             local_dir=TRF_MODEL_PATH,
             repo_type="model",
             max_workers=10,
@@ -141,9 +150,11 @@ def models_check() -> None:
 
 def transformer_model_config():
     # Intantiate tokenizer and (transformer) model
-    tokenizer = AutoTokenizer.from_pretrained(TRF_MODEL, cache_dir=TRF_MODEL_PATH)
+    tokenizer = AutoTokenizer.from_pretrained(
+        TRANSFORMER_MODEL, cache_dir=TRF_MODEL_PATH
+    )
     model = AutoModelForTokenClassification.from_pretrained(
-        TRF_MODEL, cache_dir=TRF_MODEL_PATH
+        TRANSFORMER_MODEL, cache_dir=TRF_MODEL_PATH
     )
     model.to("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -153,7 +164,7 @@ def transformer_model_config():
             "lang_code": "pt",
             "model_name": {
                 "spacy": "pt_core_news_lg",
-                "transformers": TRF_MODEL,  # Used only for NER
+                "transformers": TRANSFORMER_MODEL,  # Used only for NER
             },
         }
     ]
@@ -181,6 +192,7 @@ def get_presidio_engines(trf_model_config, ner_model_config):
         supported_languages=["pt", "en"],
         log_decision_process=False,
     )
+    analyzer_engine.registry.add_recognizer(ASNRecognizer())
 
     # Anonymizer Engine config
     anonymizer_engine = AnonymizerEngine()
@@ -221,7 +233,10 @@ def batch_process_text(texts, analyzer_engine, anonymizer_engine, batch_size=32)
             anonymizer_engine.anonymize(
                 text=batch[j],
                 analyzer_results=analyzer_results[j],
-                operators={"DEFAULT": OperatorConfig("custom_slug")},
+                operators={
+                    "DEFAULT": OperatorConfig("custom_slug"),
+                    "AS_NUMBER": OperatorConfig("custom_slug"),
+                },
             ).text
             for j in range(len(batch))
         ]
@@ -248,7 +263,61 @@ def anonymize_dataframe(
     return pd.DataFrame(anonymized_array, columns=df.columns, index=df.index)
 
 
+def read_file(file_path) -> str | pd.DataFrame:
+    if len(sys.argv) != 2:
+        print("[!] Uso: uv run anon.py <arquivo>")
+        sys.exit(1)
+
+    ext = os.path.splitext(file_path)[1].lower()
+    if ext == ".txt":
+        with open(file_path, "r", encoding="utf-8") as f:
+            return f.read()
+    elif ext == ".docx":
+        doc = Document(file_path)
+        paragraphs = [para.text for para in doc.paragraphs]
+        return "\n".join(paragraphs)
+    elif ext == ".csv":
+        return pd.read_csv(file_path, dtype=str)
+    elif ext == ".xlsx":
+        return pd.read_excel(file_path, dtype=str)
+    else:
+        raise ValueError("Formato não suportado")
+
+
+def write_file(anonymizer_results: EngineResult | pd.DataFrame, file_path: str) -> None:
+    # Ensure output directory exists
+    os.makedirs("output", exist_ok=True)
+    base_name, ext = os.path.splitext(os.path.basename(file_path))
+
+    if isinstance(anonymizer_results, pd.DataFrame):
+        output_file = os.path.join("output", f"anon_{base_name}_{ext[1:]}.csv")
+        anonymizer_results.to_csv(output_file, index=False, encoding="utf-8")
+    else:
+        output_file = os.path.join("output", f"anon_{base_name}_{ext[1:]}.txt")
+        with open(output_file, "w", encoding="utf-8") as f:
+            f.write(anonymizer_results.text)
+
+    print(f"Arquivo anonimizado salvo em: {output_file}")
+
+
+def write_report(file_path: str, start_time: float, data: str | pd.DataFrame) -> None:
+    # Ensure output directory exists
+    os.makedirs("logs", exist_ok=True)
+    # Calculate elapsed time
+    elapsed_time = time.time() - start_time
+    # Create the output file retaining original name and extension
+    base_name, ext = os.path.splitext(os.path.basename(file_path))
+    report_file = os.path.join(os.getcwd(), "logs", f"report_{base_name}_{ext[1:]}.txt")
+    with open(report_file, "w", encoding="utf-8") as report:
+        report.write(f"Arquivo processado: {file_path}\n")
+        if isinstance(data, pd.DataFrame):
+            report.write(f"Número de linhas processadas: {len(data)}\n")
+        report.write(f"Tempo total gasto: {elapsed_time:.2f} segundos\n")
+    print(f"Relatório salvo em: {report_file}")
+
+
 def main() -> None:
+    # For report-generating purposes
     start_time = time.time()
 
     file_path = sys.argv[1]
@@ -283,60 +352,14 @@ def main() -> None:
         anonymizer_results = anonymizer_engine.anonymize(
             text=data,
             analyzer_results=analyzer_results,
-            operators={"DEFAULT": OperatorConfig("custom_slug")},
+            operators={
+                "DEFAULT": OperatorConfig("custom_slug"),
+                "AS_NUMBER": OperatorConfig("custom_slug"),  # ADICIONADO
+            },
         )
 
     write_file(anonymizer_results, file_path)
     write_report(file_path, start_time, data)
-
-
-def write_report(file_path: str, start_time: float, data: str | pd.DataFrame) -> None:
-    os.makedirs("logs", exist_ok=True)
-    elapsed_time = time.time() - start_time
-    base_name, ext = os.path.splitext(os.path.basename(file_path))
-    report_file = os.path.join(os.getcwd(), "logs", f"report_{base_name}_{ext[1:]}.txt")
-    with open(report_file, "w", encoding="utf-8") as report:
-        report.write(f"Arquivo processado: {file_path}\n")
-        if isinstance(data, pd.DataFrame):
-            report.write(f"Número de linhas processadas: {len(data)}\n")
-        report.write(f"Tempo total gasto: {elapsed_time:.2f} segundos\n")
-    print(f"Relatório salvo em: {report_file}")
-
-
-def read_file(file_path) -> str | pd.DataFrame:
-    if len(sys.argv) != 2:
-        print("[!] Uso: uv run anon.py <arquivo>")
-        sys.exit(1)
-
-    ext = os.path.splitext(file_path)[1].lower()
-    if ext == ".txt":
-        with open(file_path, "r", encoding="utf-8") as f:
-            return f.read()
-    elif ext == ".docx":
-        doc = Document(file_path)
-        paragraphs = [para.text for para in doc.paragraphs]
-        return "\n".join(paragraphs)
-    elif ext == ".csv":
-        return pd.read_csv(file_path, dtype=str)
-    elif ext == ".xlsx":
-        return pd.read_excel(file_path, dtype=str)
-    else:
-        raise ValueError("Formato não suportado")
-
-
-def write_file(anonymizer_results: EngineResult | pd.DataFrame, file_path: str) -> None:
-    os.makedirs("output", exist_ok=True)
-    base_name, ext = os.path.splitext(os.path.basename(file_path))
-
-    if isinstance(anonymizer_results, pd.DataFrame):
-        output_file = os.path.join("output", f"anon_{base_name}_{ext[1:]}.csv")
-        anonymizer_results.to_csv(output_file, index=False, encoding="utf-8")
-    else:
-        output_file = os.path.join("output", f"anon_{base_name}_{ext[1:]}.txt")
-        with open(output_file, "w", encoding="utf-8") as f:
-            f.write(anonymizer_results.text)
-
-    print(f"Arquivo anonimizado salvo em: {output_file}")
 
 
 if __name__ == "__main__":
