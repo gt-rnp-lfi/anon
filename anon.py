@@ -12,7 +12,6 @@ import numpy as np
 import pandas as pd
 import spacy
 import spacy.cli
-import torch
 from docx import Document
 from huggingface_hub import snapshot_download
 from presidio_analyzer import AnalyzerEngine, Pattern, PatternRecognizer
@@ -122,7 +121,6 @@ def transformer_model_config():
     model = AutoModelForTokenClassification.from_pretrained(
         TRANSFORMER_MODEL, cache_dir=TRF_MODEL_PATH
     )
-    model.to("cuda:0" if torch.cuda.is_available() else "cpu")
 
     # Transformer model config
     trf_model_config = [
