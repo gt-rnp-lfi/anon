@@ -11,6 +11,7 @@ import warnings
 import numpy as np
 import pandas as pd
 import spacy
+import spacy.cli
 import torch
 from docx import Document
 from huggingface_hub import snapshot_download
@@ -24,10 +25,6 @@ from transformers import AutoModelForTokenClassification, AutoTokenizer
 ALLOW_LIST = ["TCP", "UDP", "HTTP", "HTTPS", "admin", "localhost"]
 TRANSFORMER_MODEL = "Davlan/xlm-roberta-base-ner-hrl"
 TRF_MODEL_PATH = os.path.join("models", TRANSFORMER_MODEL)
-
-# Enable CUDA optimizations
-torch.backends.cudnn.benchmark = True
-torch.backends.cudnn.deterministic = False
 
 # Suppress warnings
 warnings.filterwarnings("ignore")
@@ -97,14 +94,6 @@ def save_entity(
         conn.commit()
 
 
-class ASNRecognizer(PatternRecognizer):
-    PATTERNS = [Pattern("ASN", r"(?<=\W|^)AS[\s-_]*\d{1,10}(?=\W|$)", 0.5)]
-    CONTEXT = []
-
-    def __init__(self):
-        super().__init__(supported_entity="AS_NUMBER", patterns=ASNRecognizer.PATTERNS)
-
-
 class CustomSlugAnonymizer(Operator):
     # Strip before hashing to guarantee uniqueness
     def operate(self, text: str, params: dict = None) -> str:
@@ -169,7 +158,6 @@ def get_presidio_engines(trf_model_config, ner_model_config):
         supported_languages=["pt", "en"],
         log_decision_process=False,
     )
-    analyzer_engine.registry.add_recognizer(ASNRecognizer())
 
     # Anonymizer Engine config
     anonymizer_engine = AnonymizerEngine()
@@ -188,8 +176,7 @@ def batch_process_text(texts, analyzer_engine, anonymizer_engine, batch_size=32)
         # Remove MedicalLicense detection
         analyzer_engine.registry.remove_recognizer("MedicalLicenseRecognizer")
 
-        # Run analysis in parallel on the batch,
-        # while removing DATE_TIME detection
+        # Run analysis in parallel on the batch without DATE_TIME detection
         analyzer_results = [
             analyzer_engine.analyze(
                 text=text,
@@ -284,7 +271,7 @@ def write_report(file_path: str, start_time: float, data: str | pd.DataFrame) ->
     elapsed_time = time.time() - start_time
     # Create the output file retaining original name and extension
     base_name, ext = os.path.splitext(os.path.basename(file_path))
-    report_file = os.path.join(os.getcwd(), "logs", f"report_{base_name}_{ext[1:]}.txt")
+    report_file = os.path.join("logs", f"report_{base_name}_{ext[1:]}.txt")
     with open(report_file, "w", encoding="utf-8") as report:
         report.write(f"Arquivo processado: {file_path}\n")
         if isinstance(data, pd.DataFrame):
@@ -293,10 +280,38 @@ def write_report(file_path: str, start_time: float, data: str | pd.DataFrame) ->
     print(f"Relatório salvo em: {report_file}")
 
 
+def models_check():
+    # Check if folder exists, create if not
+    os.makedirs("models", exist_ok=True)
+    # Check Spacy
+    if not spacy.util.is_package("pt_core_news_lg"):
+        print("[!] Baixando Spacy...")
+        spacy.cli.download("pt_core_news_lg")
+        print("[+] Spacy baixado com sucesso.")
+    # Check Transformer
+    if not os.path.exists(TRF_MODEL_PATH):
+        print("[!] Baixando Transformer...")
+        snapshot_download(
+            repo_id=TRANSFORMER_MODEL,
+            cache_dir=TRF_MODEL_PATH,
+            max_workers=10,
+        )
+        print("[+] Transformer baixado com sucesso.")
+
+
 def main() -> None:
+    # Check if called with a file argument
+    if len(sys.argv) != 2:
+        print("[!] Uso: uv run anon.py <arquivo>")
+        sys.exit(1)
+
+    # Check if the models are present
+    models_check()
+
     # For report-generating purposes
     start_time = time.time()
 
+    # Read the file
     file_path = sys.argv[1]
     data = read_file(file_path=file_path)
 
@@ -329,7 +344,6 @@ def main() -> None:
             analyzer_results=analyzer_results,
             operators={
                 "DEFAULT": OperatorConfig("custom_slug"),
-                "AS_NUMBER": OperatorConfig("custom_slug"),  # ADICIONADO
             },
         )
 
