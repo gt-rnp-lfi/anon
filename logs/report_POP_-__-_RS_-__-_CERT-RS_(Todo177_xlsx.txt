@@ -1,3 +1,0 @@
-Arquivo processado: data/datasets-csv/POP_-__-_RS_-__-_CERT-RS_(Todo177.xlsx
-Número de linhas processadas: 3
-Tempo total gasto: 14.60 segundos

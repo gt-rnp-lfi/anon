@@ -125,29 +125,6 @@ class CustomSlugAnonymizer(Operator):
         return OperatorType.Anonymize
 
 
-def models_check() -> None:
-    # Spacy
-    spacy_model = "pt_core_news_lg"
-    spacy_model_path = os.path.join(os.getcwd(), "models", spacy_model)
-    try:
-        nlp = spacy.load(spacy_model_path)
-    except OSError:
-        print(f"Downloading spaCy's `{spacy_model}`...")
-        spacy.cli.download(spacy_model_path)
-        nlp = spacy.load(spacy_model_path)
-        nlp.to_disk(spacy_model_path)
-
-    # Transformer
-    if not os.path.exists(TRF_MODEL_PATH):
-        print(f"Downloading transformer `{TRANSFORMER_MODEL}`...")
-        snapshot_download(
-            repo_id=TRANSFORMER_MODEL,
-            local_dir=TRF_MODEL_PATH,
-            repo_type="model",
-            max_workers=10,
-        )
-
-
 def transformer_model_config():
     # Intantiate tokenizer and (transformer) model
     tokenizer = AutoTokenizer.from_pretrained(
@@ -322,8 +299,6 @@ def main() -> None:
 
     file_path = sys.argv[1]
     data = read_file(file_path=file_path)
-
-    models_check()
 
     trf_model_config, ner_model_config = transformer_model_config()
 

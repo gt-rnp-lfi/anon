@@ -1,2 +1,0 @@
-Arquivo processado: data/examples/example.docx
-Tempo total gasto: 12.35 segundos
