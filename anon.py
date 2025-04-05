@@ -11,6 +11,7 @@ import warnings
 import numpy as np
 import pandas as pd
 import spacy
+import spacy.cli
 import torch
 from docx import Document
 from huggingface_hub import snapshot_download
@@ -284,7 +285,7 @@ def write_report(file_path: str, start_time: float, data: str | pd.DataFrame) ->
     elapsed_time = time.time() - start_time
     # Create the output file retaining original name and extension
     base_name, ext = os.path.splitext(os.path.basename(file_path))
-    report_file = os.path.join(os.getcwd(), "logs", f"report_{base_name}_{ext[1:]}.txt")
+    report_file = os.path.join("logs", f"report_{base_name}_{ext[1:]}.txt")
     with open(report_file, "w", encoding="utf-8") as report:
         report.write(f"Arquivo processado: {file_path}\n")
         if isinstance(data, pd.DataFrame):
@@ -293,10 +294,38 @@ def write_report(file_path: str, start_time: float, data: str | pd.DataFrame) ->
     print(f"Relatório salvo em: {report_file}")
 
 
+def models_check():
+    # Check if folder exists, create if not
+    os.makedirs("models", exist_ok=True)
+    # Check Spacy
+    if not spacy.util.is_package("pt_core_news_lg"):
+        print("[!] Baixando Spacy...")
+        spacy.cli.download("pt_core_news_lg")
+        print("[+] Spacy baixado com sucesso.")
+    # Check Transformer
+    if not os.path.exists(TRF_MODEL_PATH):
+        print("[!] Baixando Transformer...")
+        snapshot_download(
+            repo_id=TRANSFORMER_MODEL,
+            cache_dir=TRF_MODEL_PATH,
+            max_workers=10,
+        )
+        print("[+] Transformer baixado com sucesso.")
+
+
 def main() -> None:
+    # Check if called with a file argument
+    if len(sys.argv) != 2:
+        print("[!] Uso: uv run anon.py <arquivo>")
+        sys.exit(1)
+
+    # Check if the models are present
+    models_check()
+
     # For report-generating purposes
     start_time = time.time()
 
+    # Read the file
     file_path = sys.argv[1]
     data = read_file(file_path=file_path)
 
@@ -329,7 +358,6 @@ def main() -> None:
             analyzer_results=analyzer_results,
             operators={
                 "DEFAULT": OperatorConfig("custom_slug"),
-                "AS_NUMBER": OperatorConfig("custom_slug"),  # ADICIONADO
             },
         )
 
