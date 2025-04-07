@@ -50,7 +50,7 @@ Dependências do Projeto:
 | `sentencepiece`                    | >=0.2.0      |
 | `transformers`                     | >=4.49.0     |
 
-O desenvolvimento e testes iniciais foram feitos em uma máquina com Windows 10 22H2 sob o WSL2 com um Ubuntu 20.04. Memória RAM de 16GB, Processador AMD Ryzen 3 3300X com 4 cores e 8 núcleos, Placa Gráfica NVIDIA GeForce GTX 1650
+O desenvolvimento e testes iniciais foram feitos em uma máquina com Windows 10 22H2 sob o WSL2 com um Ubuntu 20.04. Memória RAM de 16GB, Processador AMD Ryzen 3 3300X com 4 cores e 8 núcleos, e Placa Gráfica NVIDIA GeForce GTX 1650.
 
 ---
 
