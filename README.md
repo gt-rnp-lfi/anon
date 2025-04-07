@@ -10,19 +10,25 @@ _Resumo: Este trabalho aborda métodos de anonimização de dados presentes em i
 
 ## Pré-Requisitos
 
-Ferramenta `uv`:
+Ferramenta `uv` na versão `0.4.30`:
 
 - **Windows:**
 
   ```powershell
-  powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+  powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.4.30/install.ps1 | iex"
   ```
 
 - **Linux:**
 
   ```bash
-  curl -LsSf https://astral.sh/uv/install.sh | sh
+  curl -LsSf https://astral.sh/uv/0.4.30/install.sh | sh
   ```
+
+---
+
+## Versões e Ambiente utilizado
+
+TODO!()
 
 ---
 
