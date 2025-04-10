@@ -1,5 +1,9 @@
 #! /usr/bin/env python
 
+"""
+Coleta métricas de agregação dos relatórios existentes na pasta `logs/`.
+"""
+
 import glob
 import os
 import re

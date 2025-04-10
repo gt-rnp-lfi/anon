@@ -274,6 +274,9 @@ def write_report(file_path: str, start_time: float, data: str | pd.DataFrame) ->
         report.write(f"Arquivo processado: {file_path}\n")
         if isinstance(data, pd.DataFrame):
             report.write(f"Número de linhas processadas: {len(data)}\n")
+        else:
+            # Textual files count as 1 ticket
+            report.write("Número de linhas processadas: 1\n")
         report.write(f"Tempo total gasto: {elapsed_time:.2f} segundos\n")
     print(f"Relatório salvo em: {report_file}")
 
@@ -312,6 +315,9 @@ def main() -> None:
     # Read the file
     file_path = sys.argv[1]
     data = read_file(file_path=file_path)
+
+    # Let the user know what's going on
+    print(f"[+] Processando arquivo {file_path}...")
 
     trf_model_config, ner_model_config = transformer_model_config()
 
