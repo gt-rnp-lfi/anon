@@ -1,0 +1,18 @@
+From: Fail2Ban (Keyweb AG) <fail2ban-no-reply@dns01.keymachine.de>
+To: mail-abuse@cert.br,cert@cert.br
+Subject: Abuse from 192.0.2.138
+Date: Tue, 22 Mar 2022 18:21:22 +0100 (CET)
+Message-ID: <20220322172122.6B47FAE037D@dns01.keymachine.de>
+Dear Sir/Madam,
+We have detected abuse from the IP address ( 192.0.2.138 ), which according to a whois lookup is on
+your network. We would appreciate if you would investigate and take action as appropriate.
+Any feedback is welcome but not mandatory.
+Log lines are given below, but please ask if you require any further information.
+==================== Excerpt from log for 192.0.2.138 ====================
+Note: Local timezone is +0100 (CET)
+Mar 22 17:38:57 dns01 sshd[3082249]: Invalid user yi from 192.0.2.138 port 51570
+Mar 22 17:38:57 dns01 sshd[3082249]: pam_unix(sshd:auth): authentication failure; logname=
+uid=0 euid=0 tty=ssh ruser= rhost=192.0.2.138
+Mar 22 17:38:59 dns01 sshd[3082249]: Failed password for invalid user yi from 192.0.2.138 port
+51570 ssh2
+Mar 22 17:44:59 dns01 sshd[3082984]: Invalid user testing from 192.0.2.138 port 59998
