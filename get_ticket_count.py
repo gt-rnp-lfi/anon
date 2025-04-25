@@ -15,7 +15,7 @@ warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl")
 
 # Caminho passado como argumento?
 if len(sys.argv) < 2:
-    print("Uso: python count_tickets.py <caminho_da_pasta>")
+    print("Uso: uv run count_tickets.py <caminho_da_pasta>")
     sys.exit(1)
 
 # Caminho a ser verificado existe?
