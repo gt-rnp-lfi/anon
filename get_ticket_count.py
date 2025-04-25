@@ -25,7 +25,7 @@ if not base_path.exists() or not base_path.is_dir():
     sys.exit(1)
 
 # Tipos de arquivos a serem considerados
-extensoes = [".csv", ".xlsx", ".docx"]
+extensoes = [".csv", ".xlsx", ".docx", ".txt"]
 
 contagem = {}
 soma_total = 0
@@ -43,6 +43,8 @@ for arquivo in base_path.iterdir():
             linhas = len(df)
         elif arquivo.suffix == ".docx":
             linhas = 1  # cada docx é 1 ticket
+        elif arquivo.suffix == ".txt":
+            linhas = 1  # output anonimizado de docx é txt
 
         linhas = max(0, linhas)
         contagem[arquivo.name] = linhas
@@ -53,6 +55,6 @@ for arquivo in base_path.iterdir():
 
 largura_nome = max(len(nome) for nome in contagem)
 for nome, linhas in contagem.items():
-    print(f"{nome.ljust(largura_nome)}: {str(linhas).rjust(5)}")
+    print(f"{nome.ljust(largura_nome)} : {str(linhas).rjust(5)}")
 
 print(f"\n{'Total de tickets'.ljust(largura_nome)}: {str(soma_total).rjust(5)}")
