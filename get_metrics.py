@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
 """
-Coleta métricas de agregação dos relatórios existentes na pasta `logs/`.
+Printa métricas de agregação dos relatórios presentes na pasta `logs/`.
 """
 
 import glob
@@ -85,5 +85,5 @@ if __name__ == "__main__":
         )
         if stats["correlação"] is not None:
             print(
-                f"Correlação entre linhas processadas e tempo gasto: {stats['correlação']:.3f}"
+                f"Correlação de Pearson entre linhas processadas e tempo gasto: {stats['correlação']:.3f}"
             )

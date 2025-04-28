@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Conta o número de tickets em arquivos de um caminho.
+Conta o número de tickets em um caminho, passado como argumento.
 """
 
 import sys

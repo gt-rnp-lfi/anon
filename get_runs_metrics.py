@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 """
-Coleta métricas de agregação do script principal
-ao longo de várias execuções, salvando os resultados em um CSV.
+Coleta métricas de agregação do script principal ao longo de várias execuções.
+Salva os resultados em um CSV com nome definido pela variável `CSV_OUT`.
 """
 
 import csv
@@ -14,12 +14,16 @@ import time
 
 # Quantidade de runs
 NUM_RUNS = 10
+
 # Diretório onde o anon.py grava os relatórios
 REPORT_DIR = "logs"
+
 # CSV de saída
 CSV_OUT = "metrics_runs.csv"
+
 # Arquivos de teste
 TEST_FILES = glob.glob("data/datasets-teste-base/*")
+
 # Comando base para rodar o anon
 CMD_BASE = ["uv", "run", "anon.py"]
 
