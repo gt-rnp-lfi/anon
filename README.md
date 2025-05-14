@@ -56,11 +56,7 @@ O desenvolvimento e testes iniciais foram feitos em uma máquina com Windows 10 
 
 ## Instalação e Configuração
 
-1. **Clone o repositório:**
-
-   ```bash
-   git clone git@github.com:gt-rnp-lfi/anon.git
-   ```
+1. **Baixe o repositório:** https://anonymous.4open.science/api/repo/anon-F0EB/zip
 
 2. **Entre no diretório do projeto:**
 
