@@ -10,7 +10,7 @@ _Resumo: Este trabalho aborda métodos de anonimização de dados presentes em i
 
 ## Pré-Requisitos
 
-Ferramenta `uv` na versão `0.4.30`:
+1. Ferramenta `uv` na versão `0.4.30`:
 
 - **Windows:**
 
@@ -23,6 +23,7 @@ Ferramenta `uv` na versão `0.4.30`:
   ```bash
   curl -LsSf https://astral.sh/uv/0.4.30/install.sh | sh
   ```
+2. No mínimo 5GB de espaço de armazenamento (devido ao tamanho das bibliotecas e modelos de linguagem).
 
 ---
 
