@@ -1,6 +1,6 @@
-# AnonLFI: Framework de Anonimização de Incidentes para Cyber Threat Intelligence com LLMs
+# Anonimização de Incidentes de Segurança com Reidentificação Controlada
 
-Ferramenta prática e inteligente para anonimizar tickets de incidentes. 🚀
+Ferramenta prática e inteligente para anonimizar tickets de incidentes de segurança, para ser usada localmente por CSIRTs. 
 
 ---
 
