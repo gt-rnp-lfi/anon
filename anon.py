@@ -242,8 +242,10 @@ def read_file(file_path) -> str | pd.DataFrame:
         return pd.read_csv(file_path, dtype=str)
     elif ext == ".xlsx":
         return pd.read_excel(file_path, dtype=str)
+    elif ext == ".xml":
+        return pd.read_xml(file_path, dtype=str)
     else:
-        raise ValueError("Formato não suportado")
+        raise ValueError(f"Formato {ext} não suportado")
 
 
 def write_file(anonymizer_results: EngineResult | pd.DataFrame, file_path: str) -> None:
