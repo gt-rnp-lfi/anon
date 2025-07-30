@@ -115,6 +115,9 @@ Não são advertidas preocupações com segurança.
 ## Instalação
 
 1. **Baixe (ou clone) o repositório:** https://github.com/gt-rnp-lfi/anon
+   ```bash
+   git clone git@github.com:gt-rnp-lfi/anon.git
+   ```
 
 2. **Entre no diretório do projeto:**
 
@@ -146,7 +149,11 @@ uv run anon.py caminho/para/seu/arquivo.csv
 uv run anon.py caminho/para/um/excel/dados.xlsx
 ```
 
-> ⏳ **Nota: Primeira execução:** Na primeira execução, os modelos necessários (spaCy e Transformer) serão baixados automaticamente. O processo pode levar alguns segundos, devido aos seus tamanhos.
+> ⏳ **Nota: Primeira execução:** Na primeira execução, os modelos necessários (spaCy e Transformer) serão baixados automaticamente. O processo pode levar alguns minutos, devido aos seus tamanhos.
+
+**Vídeo com exemplos de execução:**
+
+<script src="https://asciinema.org/a/TC8KBxoPO5afHPqjIsSefNbCN.js" id="asciicast-TC8KBxoPO5afHPqjIsSefNbCN" async="true"></script>
 
 ---
 
@@ -160,6 +167,17 @@ Para coletar métricas de performance ao longo de 10 *runs*, é possível usar d
 uv run get_runs_metrics.py <diretório contendo um conjunto teste>
 ```
 
+### Reinvindicação 1:
+
+```bash
+uv run anon.py dataset-teste-anonimizado/anon_incidents_xlsx.csv
+```
+
+### Reinvindicação 2:
+
+```bash
+uv run anon.py dataset-teste-anonimizado/anon_POP_-__-_RS_-__-_CERT-RS_(Todo180_xlsx.csv
+```
 
 ---
 
