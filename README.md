@@ -153,7 +153,7 @@ uv run anon.py caminho/para/um/excel/dados.xlsx
 
 **Vídeo com exemplos de execução:**
 
-<script src="https://asciinema.org/a/TC8KBxoPO5afHPqjIsSefNbCN.js" id="asciicast-TC8KBxoPO5afHPqjIsSefNbCN" async="true"></script>
+[![asciicast](https://asciinema.org/a/TC8KBxoPO5afHPqjIsSefNbCN.svg)](https://asciinema.org/a/TC8KBxoPO5afHPqjIsSefNbCN)
 
 ---
 
