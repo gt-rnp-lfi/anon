@@ -3,6 +3,9 @@
 """
 Coleta métricas de agregação do script principal ao longo de várias execuções.
 Salva os resultados em um CSV com nome definido pela variável `CSV_OUT`.
+
+Leva um argumento em linha de comando, salvo em `TEST_FILES`, com o caminho
+dos arquivos de teste a serem processados.
 """
 
 import csv
@@ -11,6 +14,7 @@ import os
 import re
 import subprocess
 import time
+from sys import argv
 
 # Quantidade de runs
 NUM_RUNS = 10
@@ -21,8 +25,19 @@ REPORT_DIR = "logs"
 # CSV de saída
 CSV_OUT = "metrics_runs.csv"
 
-# Arquivos de teste
-TEST_FILES = glob.glob("data/datasets-teste-base/*")
+# Um caminho foi passado?
+if len(argv) < 2:
+    print("Uso: python get_runs_metrics.py <caminho_para_testes>")
+    exit(1)
+
+# O caminho passado é um diretório válido?
+test_dir = argv[1].rstrip(os.sep)
+if not os.path.isdir(test_dir):
+    print(f"Erro: O diretório '{test_dir}' não existe ou é inválido.")
+    exit(1)
+
+# Arquivos de teste (sem a barra no final)
+TEST_FILES = glob.glob(f"{test_dir}/*")
 
 # Comando base para rodar o anon
 CMD_BASE = ["uv", "run", "anon.py"]

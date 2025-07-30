@@ -2,13 +2,57 @@
 
 Ferramenta prática e inteligente para anonimizar tickets de incidentes de segurança, para ser usada localmente por CSIRTs. 
 
----
-
-_Resumo: Este trabalho aborda métodos de anonimização de dados presentes em incidentes de segurança, com o objetivo de alimentá-los em Large Language Models (LLMs). O objetivo é manter informações sensíveis não identificáveis, e, ao mesmo tempo, potencializar o uso de inteligência artificial (IA), permitindo a classificação e correlação pelo modelo de eventos, pessoas e ocorrências. São estabelecidos requisitos de anonimização para a utilização de incidentes reais em uma LLM, a bibliografia é revisitada a fim de avaliar os métodos e ferramentas existentes para o caso proposto, e finalmente é apresentada uma ferramenta que usa uma abordagem híbrida para solucionar o problema especificado._
 
 ---
 
-## Pré-Requisitos
+_*Título*: Anonimização de Incidentes de Segurança com Reidentificação Controlada_
+
+_*Resumo*: Este trabalho aborda métodos de anonimização de dados presentes em incidentes de segurança, com o objetivo de alimentá-los em Large Language Models (LLMs). O objetivo é manter informações sensíveis não identificáveis, e, ao mesmo tempo, potencializar o uso de inteligência artificial (IA), permitindo a classificação e correlação pelo modelo de eventos, pessoas e ocorrências. São estabelecidos requisitos de anonimização para a utilização de incidentes reais em uma LLM, a bibliografia é revisitada a fim de avaliar os métodos e ferramentas existentes para o caso proposto, e finalmente é apresentada uma ferramenta que usa uma abordagem híbrida para solucionar o problema especificado._
+
+---
+
+## Estrutura do Repositório
+
+```
+.
+├── dataset-teste-anonimizado  # Dados de teste já anonimizados
+├── .gitignore                 # Arquivos ignorados pelo git
+├── .python-version            # Versão do Python utilizada
+├── anon.py                    # Script pricipal
+├── count_eng.py               # Script utilitário, conta trechos em inglês
+├── get_metrics.py             # Script utilitário, coleta métricas de execução
+├── get_runs_metrics.py        # Script utilitário, gera métricas ao longo de várias execuções
+├── get_ticket_count.py        # Script utilitário, conta o número de tickets em um diretório
+├── LICENSE                    # Licença do projeto
+├── pyproject.toml             # Arquivo de configuração, usado para definir dependências
+├── README.md                  # Este arquivo
+├── teste-exemplo-artigo.txt   # Trecho de incidente usado como exemplo no artigo
+└── uv.lock                    # Cria o ambiente a partir do `pyproject.toml` 
+```
+
+Obs.: Após a primeira execução, são gerados 4 diretórios:
+
+```
+.
+├── db       # Base de dados local, contendo as entidades detectadas
+├── logs     # Relatórios com estatísticas básicas de execuções
+├── models   # Modelos de Redes Neurais utilizadas
+└── output   # Saída do script principal, arquivos anonimizados
+```
+
+---
+
+## Selos Considerados
+
+Os autores consideram os Selos Disponível, Funcional e Sustentável.
+
+As requisições são baseadas nas informações providas neste repositório, contendo a documentação, título e resumo do trabalho - tornando o artefato disponível. Ademais, esta documentação busca explicitar ao máximo os passos necessários  para a execução do programa, além de todas dependências necessárias e com exemplos de uso, tornando o artefato funcional. Pelo cuidado tomado com documentação, legibilidade e modularidade do código, também é considerado sustentável.
+
+---
+
+## Informações básicas
+
+Componentes necessários para a execução da ferramenta:
 
 1. Ferramenta `uv` na versão `0.4.30`:
 
@@ -23,24 +67,31 @@ _Resumo: Este trabalho aborda métodos de anonimização de dados presentes em i
   ```bash
   curl -LsSf https://astral.sh/uv/0.4.30/install.sh | sh
   ```
-2. No mínimo 5GB de espaço de armazenamento (devido ao tamanho das bibliotecas e modelos de linguagem).
+
+Requisitos de hardware:
+
+2. No mínimo 5GB de espaço de armazenamento
+    - Necessário devido ao tamanho das bibliotecas e modelos de redes neurais.
 
 ---
 
-## Versões e Ambiente utilizado
+## Dependências
 
-Ferramentas Principais:
+Dependências para a execução da ferramenta:
+
+- Ferramentas Principais:
 
 | Ferramenta | Versão  |
 |------------|---------|
 | `uv`       | 0.4.30  |
 | Python     | 3.11    |
 
-Dependências do Projeto:
+- Dependências do Projeto:
 
-| Dependência                        | Versão       |
+| Pacote                             | Versão       |
 |------------------------------------|--------------|
 | `email-validator`                  | >=2.2.0      |
+| `fasttext`                         | >=0.9.3      |
 | `openpyxl`                         | >=3.1.5      |
 | `pandas`                           | >=2.2.3      |
 | `pip`                              | >=25.0.1     |
@@ -51,13 +102,19 @@ Dependências do Projeto:
 | `sentencepiece`                    | >=0.2.0      |
 | `transformers`                     | >=4.49.0     |
 
-O desenvolvimento e testes iniciais foram feitos em uma máquina com Windows 10 22H2 sob o WSL2 com um Ubuntu 20.04. Memória RAM de 16GB, Processador AMD Ryzen 3 3300X com 4 cores e 8 núcleos, e Placa Gráfica NVIDIA GeForce GTX 1650.
+O desenvolvimento e testes iniciais foram feitos em uma máquina com Windows 10 22H2 sob o WSL2 com um Ubuntu 20.04, tendo 16GB de memória RAM, e processador AMD Ryzen 3 3300X.
 
 ---
 
-## Instalação e Configuração
+## Preocupações com segurança
 
-1. **Baixe o repositório:** https://anonymous.4open.science/api/repo/anon-F0EB/zip
+Não são advertidas preocupações com segurança.
+
+---
+
+## Instalação
+
+1. **Baixe (ou clone) o repositório:** https://github.com/gt-rnp-lfi/anon
 
 2. **Entre no diretório do projeto:**
 
@@ -65,56 +122,47 @@ O desenvolvimento e testes iniciais foram feitos em uma máquina com Windows 10 
    cd ./anon
    ```
 
+3. **Execute o script principal, passando um arquivo como argumento:**
+
+    ```bash
+    uv run anon.py <arquivo>
+    ```
+
+Obs.: A ferramenta aceita os seguintes formatos de arquivo:
+
+- **Formato Texto:** `.txt`
+- **Documento Word:** `.docx`
+- **Formato IODEF**: `.xml`
+- **Planilhas:** `.csv`, `.xlsx`
+
 ---
 
-## Uso
+## Teste mínimo
 
-Execute o script passando um arquivo como argumento:
-
-```bash
-uv run anon.py <arquivo>
-```
-
-**Exemplos:**
+**Exemplos de execução:**
 
 ```bash
 uv run anon.py caminho/para/seu/arquivo.csv
 uv run anon.py caminho/para/um/excel/dados.xlsx
 ```
 
-> ⏳ **Nota: Primeira execução:** Na primeira execução, os modelos necessários (Spacy e Transformer) serão baixados automaticamente. O processo pode levar um momento, devido ao seu tamanho.
+> ⏳ **Nota: Primeira execução:** Na primeira execução, os modelos necessários (spaCy e Transformer) serão baixados automaticamente. O processo pode levar alguns segundos, devido aos seus tamanhos.
 
 ---
 
-## Formatos de Arquivos Suportados
+## Experimentos
 
-A ferramenta aceita os seguintes formatos de arquivo:
+### Coleta de métricas para 10 execuções
 
-- **Planilhas:** `.csv`, `.xlsx`
-- **Documento Word:** `.docx`
-- **Texto:** `.txt`
-
----
-
-## Observações Adicionais
-
-- **Logs e Relatórios:**  
-  
-  A saída (os arquivos anonimizados) serão salvos na pasta `output` - criada pela própria ferramenta -, e um relatório de execução será gerado na pasta `logs`, também gerada.
-
-- **Tabela de Entidades:**
-  
-  Ao anonimizar arquivos, o *script* também cria um arquivo `db/entities.db`, uma base de dados SQLite3 contendo informações sobre as entidades encontradas na fase de análise.
-
----
-
-## Exemplo de Execução
-
-> ⚠️ O exemplo abaixo já consta com os modelos baixados.
+Para coletar métricas de performance ao longo de 10 *runs*, é possível usar de [um dos scripts auxiliares](./get_runs_metrics.py). Basta passar um diretório como único argumento de liha de comando:
 
 ```bash
-  (anon) ➜  anon git:(main) uv run anon.py data/examples/example-short.csv
-  Device set to use cpu
-  Arquivo anonimizado salvo em: output/anon_example-short_csv.csv
-  Relatório salvo em: logs/report_example-short_csv.txt
+uv run get_runs_metrics.py <diretório contendo um conjunto teste>
 ```
+
+
+---
+
+## LICENSE
+
+Esta ferramenta está licenciada sob a [GPL-3.0](./LICENSE).
