@@ -11,6 +11,23 @@ _*Resumo*: Este trabalho aborda métodos de anonimização de dados presentes em
 
 ---
 
+## Estrutura deste README
+
+Esta documentação está organizada da seguinte maneira:
+
+- **Estrutura do Repositório:** Arquivos e diretórios presentes no projeto, com suas funções.
+- **Selos Considerados:** Selos pretendidos pelo artefato (Disponível, Funcional e Sustentável).
+- **Informações básicas:** Pré-requisitos de software/hardware para execução da ferramenta.
+- **Dependências:** Dependências de pacotes necessários para execução.
+- **Preocupações com segurança:** Informe sobre possíveis preocupações de segurança. 
+- **Instalação:** Passo a passo para baixar, instalar e executar a ferramenta.
+- **Teste mínimo:** Exemplos de uso e vídeo demonstrativo da execução da ferramenta.
+- **Ambiente de Testes:** Ambiente de hardware/software usado para desenvolvimento/testes.
+- **Experimentos:** Sobre coleta de métricas e exemplos de execução dos scripts auxiliares.
+- **LICENSE:** Informação sobre a licença do projeto.
+
+---
+
 ## Estrutura do Repositório
 
 ```
@@ -150,6 +167,8 @@ uv run anon.py caminho/para/um/excel/dados.xlsx
 > ⏳ **Nota: Primeira execução:** Na primeira execução, os modelos necessários (spaCy e Transformer) serão baixados automaticamente. O processo pode levar alguns minutos, devido aos seus tamanhos.
 
 **Vídeo com exemplos de execução:**
+
+> :warning: O player (no site externo) permite que trechos sejam copiados diretamente do vídeo.
 
 <a href="https://asciinema.org/a/TC8KBxoPO5afHPqjIsSefNbCN" target="_blank"><img src="https://asciinema.org/a/TC8KBxoPO5afHPqjIsSefNbCN.svg" /></a>
 
