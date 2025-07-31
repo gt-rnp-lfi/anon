@@ -102,8 +102,6 @@ Dependências para a execução da ferramenta:
 | `sentencepiece`                    | >=0.2.0      |
 | `transformers`                     | >=4.49.0     |
 
-O desenvolvimento e testes iniciais foram feitos em uma máquina com Windows 10 22H2 sob o WSL2 com um Ubuntu 20.04, tendo 16GB de memória RAM, e processador AMD Ryzen 3 3300X.
-
 ---
 
 ## Preocupações com segurança
@@ -153,7 +151,21 @@ uv run anon.py caminho/para/um/excel/dados.xlsx
 
 **Vídeo com exemplos de execução:**
 
-[![asciicast](https://asciinema.org/a/TC8KBxoPO5afHPqjIsSefNbCN.svg)](https://asciinema.org/a/TC8KBxoPO5afHPqjIsSefNbCN)
+<a href="https://asciinema.org/a/TC8KBxoPO5afHPqjIsSefNbCN" target="_blank"><img src="https://asciinema.org/a/TC8KBxoPO5afHPqjIsSefNbCN.svg" /></a>
+
+---
+
+## Ambiente de Testes
+
+Visando garantir uma maior compatibilidade e resultados o mais próximos possíveis com o reportado, aconselha-se o uso de hardware em nível similar ao da máquina de desenvolvuimento da ferramenta:
+
+### Ambiente de Teste 1:
+
+**Hardware:** Desktop: Processador: AMD Ryzen 3 3300X; Memória RAM: 16GB DDR4 @ 2666Hz; Placa de Vídeo: NVIDIA GeForce 1650.
+
+**Software:** Sistema Operacional: Windows 10 22H2.
+
+**Software:** Sistema de Virtualização: WSL2, Ubuntu 20.04.
 
 ---
 
