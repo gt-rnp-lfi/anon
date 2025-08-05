@@ -207,7 +207,7 @@ uv run anon.py dataset-teste-anonimizado/anon_incidents_xlsx.csv
 ### Reinvindicação 2:
 
 ```bash
-uv run anon.py dataset-teste-anonimizado/anon_POP_-__-_RS_-__-_CERT-RS_(Todo180_xlsx.csv
+uv run anon.py dataset-teste-anonimizado/anon_POP_-__-_RS_-__-_CERT-RS_\(Todo180_xlsx.csv
 ```
 
 ---
